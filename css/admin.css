@@ -1,0 +1,110 @@
+#ts_head {
+	width: calc(100% - 20px);
+	max-width: 800px;
+	text-align: center;
+	font-size: 30px;
+}
+
+#ts_load {
+	display: flex;
+	width: calc(100% - 20px);
+	max-width: 800px;
+	align-items: center;
+	justify-content: center;
+}
+
+#ts_content {
+	width: calc(100% - 20px);
+	max-width: 800px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+#ts_content > * {
+	width: 50%;
+}
+
+#add_form > * {
+	max-width: 100%;
+}
+
+#ajax_users table {
+	font-size: 18px;
+	line-height: 30px;
+	width: 100%;
+	border: 1px solid rgba(0,0,0,0.3);
+	box-sizing: border-box !important;
+	border-collapse: separate !important;
+	border-spacing: 0 !important;
+	border-radius: 3px;
+	margin-top: 20px;
+}
+#ajax_users table tr:nth-child(odd) {
+	background-color: #fff;
+}
+#ajax_users table tr td {
+	padding: 5px;
+}
+#ajax_users table tr td:first-child {
+	max-width: 100%;
+	width: 100%;
+	border-right: 1px solid rgba(0,0,0,0.3);
+}
+#ajax_users table tr td:nth-child(2) {
+	color: red;
+	border-right: 1px solid rgba(0,0,0,0.3);
+	font-size: smaller;
+}
+
+/* Thanks to css-spinners.com */
+@-moz-keyframes three-quarters-loader {
+  0% {
+    -moz-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -moz-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes three-quarters-loader {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes three-quarters-loader {
+  0% {
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+/* :not(:required) hides this rule from IE9 and below */
+.three-quarters-loader:not(:required) {
+  -moz-animation: three-quarters-loader 1250ms infinite linear;
+  -webkit-animation: three-quarters-loader 1250ms infinite linear;
+  animation: three-quarters-loader 1250ms infinite linear;
+  border: 8px solid #2faadd;
+  border-right-color: transparent;
+  border-radius: 50%;
+  box-sizing: border-box;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  text-indent: -9999px;
+  width: 50px;
+  height: 50px;
+  visibility: hidden;
+}

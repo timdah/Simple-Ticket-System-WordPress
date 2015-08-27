@@ -1,0 +1,229 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-08-20 16:24+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: includes/system.php:35
+msgid "Username"
+msgstr ""
+
+#: includes/system.php:37
+msgid "Password"
+msgstr ""
+
+#: includes/system.php:51
+msgid "New Tickets"
+msgstr ""
+
+#: includes/system.php:52
+msgid "My Tickets"
+msgstr ""
+
+#: includes/system.php:53
+msgid "Open Tickets"
+msgstr ""
+
+#: includes/system.php:54
+msgid "Filter"
+msgstr ""
+
+#: includes/system.php:61 includes/system.php:185 includes/ajax.php:176
+msgid "Issuer"
+msgstr ""
+
+#: includes/system.php:62 includes/form.php:24
+msgid "E-Mail"
+msgstr ""
+
+#: includes/system.php:63
+msgid "Done"
+msgstr ""
+
+#: includes/system.php:64 includes/system.php:165 includes/system.php:180
+#: includes/ajax.php:152 includes/ajax.php:170
+msgid "Solution"
+msgstr ""
+
+#: includes/system.php:65 includes/form.php:22
+msgid "Name"
+msgstr ""
+
+#: includes/system.php:66 includes/system.php:182 includes/ajax.php:173
+#: includes/form.php:34
+msgid "Problem"
+msgstr ""
+
+#: includes/system.php:67 includes/system.php:108 includes/system.php:183
+#: includes/ajax.php:95 includes/ajax.php:174 includes/form.php:42
+msgid "Appointment"
+msgstr ""
+
+#: includes/system.php:69
+msgid "contains"
+msgstr ""
+
+#: includes/system.php:71
+msgid "Newest first"
+msgstr ""
+
+#: includes/system.php:72
+msgid "Oldest first"
+msgstr ""
+
+#: includes/system.php:74
+msgid "Apply filter"
+msgstr ""
+
+#: includes/system.php:159 includes/system.php:181 includes/ajax.php:146
+#: includes/ajax.php:172
+msgid "Note"
+msgstr ""
+
+#: includes/system.php:192 includes/ajax.php:183
+msgid "Insert"
+msgstr ""
+
+#: includes/system.php:207 includes/ajax.php:263
+msgid "today"
+msgstr ""
+
+#: includes/system.php:215 includes/ajax.php:254
+msgid "overdue"
+msgstr ""
+
+#: includes/system.php:228 includes/ajax.php:277
+msgid "TOMORROW"
+msgstr ""
+
+#: includes/system.php:230 includes/ajax.php:279
+#, php-format
+msgid "Appointment in %s days"
+msgstr ""
+
+#: includes/ajax.php:235
+msgid "done by"
+msgstr ""
+
+#: includes/ajax.php:245
+msgid "under examination by"
+msgstr ""
+
+#: includes/form.php:26
+msgid "Optional Field 1"
+msgstr ""
+
+#: includes/form.php:28
+msgid "Optional Field 2"
+msgstr ""
+
+#: includes/form.php:30
+msgid "Optional Field 3"
+msgstr ""
+
+#: includes/form.php:36
+msgid "Status information by E-Mail"
+msgstr ""
+
+#: includes/form.php:57
+msgid "Report problem"
+msgstr ""
+
+#: includes/mail.php:63
+msgid "Your problem has been successfully submitted."
+msgstr ""
+
+#: includes/mail.php:65 includes/mail.php:72 includes/admin/add-user.php:28
+#: includes/admin/add-user.php:60
+msgid "Back"
+msgstr ""
+
+#: includes/mail.php:70
+msgid "Unfortunately, something went wrong, please contact the administrator."
+msgstr ""
+
+#: includes/admin/options-user.php:18 ticket-system-simple.php:63
+msgid "User Administration"
+msgstr ""
+
+#: includes/admin/options-user.php:23
+msgid "Your username (no umlauts)"
+msgstr ""
+
+#: includes/admin/options-user.php:26
+msgid "Your password"
+msgstr ""
+
+#: includes/admin/options-user.php:29
+msgid "Repeat password"
+msgstr ""
+
+#: includes/admin/options-user.php:32
+msgid "Salutation"
+msgstr ""
+
+#: includes/admin/options-user.php:33
+msgid "Mr"
+msgstr ""
+
+#: includes/admin/options-user.php:34
+msgid "Mrs"
+msgstr ""
+
+#: includes/admin/options-user.php:36
+msgid "Last name"
+msgstr ""
+
+#: includes/admin/options-user.php:39
+msgid "Admin"
+msgstr ""
+
+#: includes/admin/options-user.php:42
+msgid "Add user"
+msgstr ""
+
+#: includes/admin/options-user.php:55
+msgid "Delete"
+msgstr ""
+
+#: includes/admin/add-user.php:26
+msgid "Input errors. Please fill in all fields correctly."
+msgstr ""
+
+#: includes/admin/add-user.php:42
+#, php-format
+msgid "User %s was created successfully"
+msgstr ""
+
+#: includes/admin/add-user.php:47
+msgid "Failed to save the user"
+msgstr ""
+
+#: includes/admin/add-user.php:56
+msgid "Username already exists"
+msgstr ""
+
+#: includes/login.php:39
+msgid "Username and/or password were incorrect."
+msgstr ""
+
+#: ticket-system-simple.php:64
+msgid "Users"
+msgstr ""
+
+#: ticket-system-simple.php:84
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""

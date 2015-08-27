@@ -1,0 +1,230 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-08-20 15:26+0200\n"
+"PO-Revision-Date: 2015-08-20 15:36+0200\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.4\n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: de_DE\n"
+
+#: includes/system.php:35
+msgid "Username"
+msgstr "Benutzername"
+
+#: includes/system.php:37
+msgid "Password"
+msgstr "Passwort"
+
+#: includes/system.php:51
+msgid "New Tickets"
+msgstr "Neue Tickets"
+
+#: includes/system.php:52
+msgid "My Tickets"
+msgstr "Meine Tickets"
+
+#: includes/system.php:53
+msgid "Open Tickets"
+msgstr "Offene Tickets"
+
+#: includes/system.php:54
+msgid "Filter"
+msgstr "Filter"
+
+#: includes/system.php:61 includes/system.php:185 includes/ajax.php:176
+msgid "Issuer"
+msgstr "Bearbeiter"
+
+#: includes/system.php:62 includes/form.php:24
+msgid "E-Mail"
+msgstr "E-Mail"
+
+#: includes/system.php:63
+msgid "Done"
+msgstr "Erledigte"
+
+#: includes/system.php:64 includes/system.php:165 includes/system.php:180
+#: includes/ajax.php:152 includes/ajax.php:170
+msgid "Solution"
+msgstr "Lösung"
+
+#: includes/system.php:65 includes/form.php:22
+msgid "Name"
+msgstr "Name"
+
+#: includes/system.php:66 includes/system.php:182 includes/ajax.php:173
+#: includes/form.php:34
+msgid "Problem"
+msgstr "Problem"
+
+#: includes/system.php:67 includes/system.php:108 includes/system.php:183
+#: includes/ajax.php:95 includes/ajax.php:174 includes/form.php:42
+msgid "Appointment"
+msgstr "Termin"
+
+#: includes/system.php:69
+msgid "contains"
+msgstr "beinhaltet"
+
+#: includes/system.php:71
+msgid "Newest first"
+msgstr "Neue zuerst"
+
+#: includes/system.php:72
+msgid "Oldest first"
+msgstr "Alte zuerst"
+
+#: includes/system.php:74
+msgid "Apply filter"
+msgstr "Filter anwenden"
+
+#: includes/system.php:159 includes/system.php:181 includes/ajax.php:146
+#: includes/ajax.php:172
+msgid "Note"
+msgstr "Bemerkung"
+
+#: includes/system.php:192 includes/ajax.php:183
+msgid "Insert"
+msgstr "Einfügen"
+
+#: includes/system.php:207 includes/ajax.php:263
+msgid "today"
+msgstr "heute"
+
+#: includes/system.php:215 includes/ajax.php:254
+msgid "overdue"
+msgstr "überfällig"
+
+#: includes/system.php:228 includes/ajax.php:277
+msgid "TOMORROW"
+msgstr "MORGEN"
+
+#: includes/system.php:230 includes/ajax.php:279
+#, php-format
+msgid "Appointment in %s days"
+msgstr "Termin in %s Tagen"
+
+#: includes/ajax.php:235
+msgid "done by"
+msgstr "erledigt von"
+
+#: includes/ajax.php:245
+msgid "under examination by"
+msgstr "in Bearbeitung von"
+
+#: includes/form.php:26
+msgid "Optional Field 1"
+msgstr "Optionales Feld 1"
+
+#: includes/form.php:28
+msgid "Optional Field 2"
+msgstr "Optionales Feld 2"
+
+#: includes/form.php:30
+msgid "Optional Field 3"
+msgstr "Optionales Feld 3"
+
+#: includes/form.php:36
+msgid "Status information by E-Mail"
+msgstr "Statusinformationen per E-Mail"
+
+#: includes/form.php:57
+msgid "Report problem"
+msgstr "Problem melden"
+
+#: includes/mail.php:63
+msgid "Your problem has been successfully submitted."
+msgstr "Tein Problem wurde erfolgreich übermittelt"
+
+#: includes/mail.php:65 includes/mail.php:72 includes/admin/add-user.php:28
+#: includes/admin/add-user.php:60
+msgid "Back"
+msgstr "Zurück"
+
+#: includes/mail.php:70
+msgid "Unfortunately, something went wrong, please contact the administrator."
+msgstr "Leider ist etwas schief gelaufen, bitte kontaktieren Sie den Administrator"
+
+#: includes/admin/options-user.php:18 ticket-system-simple.php:63
+msgid "User Administration"
+msgstr "Benutzerverwaltung"
+
+#: includes/admin/options-user.php:23
+msgid "Your username (no umlauts)"
+msgstr "Deine Benutzername (keine Umlaute)"
+
+#: includes/admin/options-user.php:26
+msgid "Your password"
+msgstr "Dein Passwort"
+
+#: includes/admin/options-user.php:29
+msgid "Repeat password"
+msgstr "Passwort wiederholen"
+
+#: includes/admin/options-user.php:32
+msgid "Salutation"
+msgstr "Anrede"
+
+#: includes/admin/options-user.php:33
+msgid "Mr"
+msgstr "Herr"
+
+#: includes/admin/options-user.php:34
+msgid "Mrs"
+msgstr "Frau"
+
+#: includes/admin/options-user.php:36
+msgid "Last name"
+msgstr "Nachname"
+
+#: includes/admin/options-user.php:39
+msgid "Admin"
+msgstr "Admin"
+
+#: includes/admin/options-user.php:42
+msgid "Add user"
+msgstr "Benutzer hinzufügen"
+
+#: includes/admin/options-user.php:55
+msgid "Delete"
+msgstr "Löschen"
+
+#: includes/admin/add-user.php:26
+msgid "Input errors. Please fill in all fields correctly."
+msgstr "Eingabefehler. Bitte alle Felder korrekt ausfüllen."
+
+#: includes/admin/add-user.php:42
+#, php-format
+msgid "User %s was created successfully"
+msgstr "Benutzer %s wurde erfolgreich erstellt"
+
+#: includes/admin/add-user.php:47
+msgid "Failed to save the user"
+msgstr "Fehler beim Speichern des Benutzers"
+
+#: includes/admin/add-user.php:56
+msgid "Username already exists"
+msgstr "Benutzername existiert bereits"
+
+#: includes/login.php:39
+msgid "Username and/or password were incorrect."
+msgstr "Benutzername und/oder Passwort waren falssch"
+
+#: ticket-system-simple.php:64
+msgid "Users"
+msgstr "Benutzer"
+
+#: ticket-system-simple.php:84
+msgid "You do not have sufficient permissions to access this page."
+msgstr "Sie haben nicht die benötigten Bereichtigungen um diese Seite zu betreten."
