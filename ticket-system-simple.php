@@ -31,7 +31,7 @@ if (session_status() == PHP_SESSION_NONE) {
 $_SESSION["dir_url"] = plugin_dir_url(__FILE__);
 $_SESSION["dir"] = plugin_dir_path(__FILE__);
 $_SESSION["wp_dir"] = ABSPATH;
-global $wpdb;
+global $wpdb;;
 
 
 function myplugin_activate() {
