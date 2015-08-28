@@ -41,6 +41,7 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 					<?php
 					}
 					?>
+					<input id="rcheck" type="text" name="rcheck" />
 					<input type="submit" id="go" value="<?php _e('Report problem', 'ticket-system-simple'); ?>" />
 				</div>
 			</form>
