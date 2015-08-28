@@ -36,7 +36,6 @@ Key features:
 
 #### Filter for tickets
 ![screenshot-5](https://cloud.githubusercontent.com/assets/13997715/9519996/0949566e-4cc4-11e5-82f9-ee559a5113ad.png)
-filter for tickets
 
 #### Backend page
 ![screenshot-6](https://cloud.githubusercontent.com/assets/13997715/9519995/094827f8-4cc4-11e5-9a1a-9689b6b49607.png)
