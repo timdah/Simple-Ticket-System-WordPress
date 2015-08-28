@@ -10,6 +10,8 @@ jQuery(document).ready(function() {
 });
 
 function submitTicket() {
+	if(jQuery('#rcheck').val() != ''){return;}
+	
 	var name = jQuery('#add_name').val();
 	var mail = jQuery('#add_mail').val();
 	var problem = jQuery('#add_problem').val();
