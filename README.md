@@ -45,6 +45,6 @@ filter for tickets
 4. Place `<?php do_shortcode('[ts_tickets]'); ?>` in your templates or [ts_tickets] in page edit mode for the ticket system page.
 
 
-# Languages and Localization
+# Languages
 The plugin currently comes with the following translations:
 English, German
