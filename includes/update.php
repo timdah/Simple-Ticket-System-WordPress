@@ -1,10 +1,6 @@
 <?php
 // Zugriff einschränken
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
-//Session Variablen aktivieren
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
 // Um $wpdb nutzen zu können
 global $wpdb;
 $user = $_SESSION["username"];
@@ -52,7 +48,7 @@ if(isset($_POST["what"]))
 		if($status == '1')
 		{
 			//set Post variables
-			$url = $_SESSION["dir_url"].'includes/status.php';
+			$url = TS_DIR_URL.'includes/status.php';
 			$data = array('mail' => $mail, 'what' => 'change', 'anrede' => $anrede, 'name' => $name);
 			//open connection
 			$ch = curl_init();
@@ -155,7 +151,7 @@ if(isset($_POST["what"]))
 				if($status == '1')
 				{
 					//set Post variables
-					$url = $_SESSION["dir_url"].'includes/status.php';
+					$url = TS_DIR_URL.'includes/status.php';
 					$data = array('mail' => $mail, 'what' => 'take', 'anrede' => $anrede, 'name' => $name);
 					//open connection
 					$ch = curl_init();
@@ -185,7 +181,7 @@ if(isset($_POST["what"]))
 				if($status == '1')
 				{
 					//set Post variables
-					$url = $_SESSION["dir_url"].'includes/status.php';
+					$url = TS_DIR_URL.'includes/status.php';
 					$data = array('mail' => $mail, 'what' => 'done', 'anrede' => $anrede, 'name' => $name);
 					//open connection
 					$ch = curl_init();

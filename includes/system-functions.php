@@ -2,35 +2,35 @@
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
 function AJAX_callback() {
-	include_once($_SESSION["dir"].'includes/ajax.php');
+	include_once(TS_DIR.'includes/ajax.php');
 	wp_die();
 }
 add_action( 'wp_ajax_nopriv_AJAX', 'AJAX_callback' );
 add_action( 'wp_ajax_AJAX', 'AJAX_callback' );
 
 function UPDATE_callback() {
-	include_once($_SESSION["dir"].'includes/update.php');
+	include_once(TS_DIR.'includes/update.php');
 	wp_die();
 }
 add_action( 'wp_ajax_nopriv_UPDATE', 'UPDATE_callback' );
 add_action( 'wp_ajax_UPDATE', 'UPDATE_callback' );
 
 function LOGIN_callback() {
-	include_once($_SESSION["dir"].'includes/login.php');
+	include_once(TS_DIR.'includes/login.php');
 	wp_die();
 }
 add_action( 'wp_ajax_nopriv_LOGIN', 'LOGIN_callback' );
 add_action( 'wp_ajax_LOGIN', 'LOGIN_callback' );
 
 function SYSTEM_callback() {
-	include_once($_SESSION["dir"].'includes/system.php');
+	include_once(TS_DIR.'includes/system.php');
 	wp_die();
 }
 add_action( 'wp_ajax_nopriv_SYSTEM', 'SYSTEM_callback' );
 add_action( 'wp_ajax_SYSTEM', 'SYSTEM_callback' );
 
 function LOGOUT_callback() {
-	include_once($_SESSION["dir"].'includes/logout.php');
+	include_once(TS_DIR.'includes/logout.php');
 	wp_die();
 }
 add_action( 'wp_ajax_nopriv_LOGOUT', 'LOGOUT_callback' );

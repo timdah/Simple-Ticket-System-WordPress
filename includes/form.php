@@ -1,8 +1,5 @@
 <?php
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
 ?>
 <div id="form_content">
 	<div id="ts_load"><div class="three-quarters-loader"></div></div>
@@ -49,6 +46,3 @@ if (session_status() == PHP_SESSION_NONE) {
 			</form>
 		</div>
 </div>
-<script>
-	var dir_url = '<?php echo $_SESSION["dir_url"]; ?>';
-</script> 

@@ -1,10 +1,6 @@
 <?php
 // Zugriff einschränken
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
-//Session Variablen aktivieren
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
 // Um $wpdb nutzen zu können
 global $wpdb;
 $user = $_SESSION["username"];
@@ -186,28 +182,28 @@ foreach($ticket as $row)
 			if($row->bearbeiter == $user && $row->geloest != '1')
 			{
 		?>
-				<div class="done" onClick="javascript:done('<?php echo esc_html($row->id); ?>')" style="background-image: url('<?php echo $_SESSION["dir_url"]; ?>img/done.png')"></div>
+				<div class="done" onClick="javascript:done('<?php echo esc_html($row->id); ?>')" style="background-image: url('<?php echo TS_DIR_URL; ?>img/done.png')"></div>
 		<?php
 			} 
 			// Button um Ticket zu nehmen
 			else if($row->bearbeiter == 'unbekannt' && $row->geloest != '1')
 			{
 		?>
-				<div class="done" onClick="javascript:take('<?php echo esc_html($row->id); ?>')" style="background-image: url('<?php echo $_SESSION["dir_url"]; ?>img/take.png')"></div>
+				<div class="done" onClick="javascript:take('<?php echo esc_html($row->id); ?>')" style="background-image: url('<?php echo TS_DIR_URL; ?>img/take.png')"></div>
 		<?php
 			} 
 			// Button um Ticket zu übernehmen
 			else if($row->bearbeiter != 'unbekannt' && $row->bearbeiter != $user && $row->geloest != '1')
 			{
 		?>
-				<div class="done" onClick="javascript:change('<?php echo esc_html($row->id); ?>')" style="background-image: url('<?php echo $_SESSION["dir_url"]; ?>img/change.png')"></div>
+				<div class="done" onClick="javascript:change('<?php echo esc_html($row->id); ?>')" style="background-image: url('<?php echo TS_DIR_URL; ?>img/change.png')"></div>
 		<?php
 			}
 			// Button um Ticket zurück zu holen
 			else if($row->bearbeiter == $user && $row->geloest == '1' || $row->geloest == '1' && $_SESSION["admin"] == 1)
 			{
 		?>
-				<div class="done" onClick="javascript:undo('<?php echo esc_html($row->id); ?>')" style="background-image: url('<?php echo $_SESSION["dir_url"]; ?>img/undo.png')"></div>
+				<div class="done" onClick="javascript:undo('<?php echo esc_html($row->id); ?>')" style="background-image: url('<?php echo TS_DIR_URL; ?>img/undo.png')"></div>
 		<?php
 			}
 		?>
@@ -217,7 +213,7 @@ foreach($ticket as $row)
 		{	
 		?>
 			<div style="width: 100%; display:flex; justify-content:center;">
-				<div class="expand" onClick="javascript:expand2('<?php echo esc_html($row->id); ?>')" style="background-image: url('<?php echo $_SESSION["dir_url"]; ?>img/expand.png')"></div>
+				<div class="expand" onClick="javascript:expand2('<?php echo esc_html($row->id); ?>')" style="background-image: url('<?php echo TS_DIR_URL; ?>img/expand.png')"></div>
 			</div>
 		<?php 
 		}

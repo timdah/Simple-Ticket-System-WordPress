@@ -1,12 +1,8 @@
 <?php
 // Zugriff einschränken
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
-//Session Variablen aktivieren
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
 
-$dir_url = $_SESSION["dir_url"];
+$dir_url = TS_DIR_URL;
 $date = date(get_option('date_format'));
 $timestamp = strtotime($date);
 global $wpdb;

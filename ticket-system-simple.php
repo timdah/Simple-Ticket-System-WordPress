@@ -17,7 +17,6 @@ This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
- 
 You should have received a copy of the GNU General Public License
 along with this program. If not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
@@ -25,15 +24,22 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 Copyright 2015 Tim Dahlmanns
 */
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
+
+// Start Session when not already started
+function register_session() {
+	if( !session_id() )
+		session_start();
 }
-$_SESSION["dir_url"] = plugin_dir_url(__FILE__);
-$_SESSION["dir"] = plugin_dir_path(__FILE__);
-$_SESSION["wp_dir"] = ABSPATH;
+add_action('init','register_session');
+
+// define constants
+define( 'TS_DIR', plugin_dir_path( __FILE__ ) );
+define( 'TS_DIR_URL', plugin_dir_url(__FILE__) );
+
+// Use Wordpress Database
 global $wpdb;
 
-
+// Installation
 function myplugin_activate() {
     include_once($_SESSION["dir"].'includes/install.php');
 }
@@ -42,34 +48,37 @@ register_activation_hook( __FILE__, 'myplugin_activate' );
 
 /* CSS */
 function css_include_function() {
-	wp_enqueue_style( 'it', $_SESSION["dir_url"].'css/it.css' );
-	wp_enqueue_style( 'problem', $_SESSION["dir_url"].'css/problem.css' );
-	wp_enqueue_style( 'datepicker', $_SESSION["dir_url"].'css/datepicker.css' );
+	wp_enqueue_style( 'it', TS_DIR_URL.'css/it.css' );
+	wp_enqueue_style( 'problem', TS_DIR_URL.'css/problem.css' );
+	wp_enqueue_style( 'datepicker', TS_DIR_URL.'css/datepicker.css' );
 }
 add_action( 'wp_enqueue_scripts', 'css_include_function' );
 
 
 /* Shortcodes */
+
+// [ts_form]
 function form_func() {
-	include_once($_SESSION["dir"].'includes/form.php');
+	include_once(TS_DIR.'includes/form.php');
 	function js_include_function() {
-		wp_enqueue_script( 'datepicker.js', $_SESSION["dir_url"].'js/bootstrap-datepicker.js' );
-		wp_enqueue_script( 'datepicker.de.js', $_SESSION["dir_url"].'js/bootstrap-datepicker.de.js' );
+		wp_enqueue_script( 'datepicker.js', TS_DIR_URL.'js/bootstrap-datepicker.js' );
+		wp_enqueue_script( 'datepicker.de.js', TS_DIR_URL.'js/bootstrap-datepicker.de.js' );
 	}
 	add_action( 'wp_footer', 'js_include_function' );
-	wp_enqueue_script( 'form.js', $_SESSION["dir_url"].'js/form.js', array('jquery') );
+	wp_enqueue_script( 'form.js', TS_DIR_URL.'js/form.js', array('jquery') );
 	wp_localize_script( 'form.js', 'ajax_object',array( 'ajax_url' => admin_url( 'admin-ajax.php' )) );
 }
 add_shortcode( 'ts_form', 'form_func' );
 
+// [ts_tickets]
 function tickets_func() {
-	include_once($_SESSION["dir"].'includes/system.php');
+	include_once(TS_DIR.'includes/system.php');
 	function js_include_function() {
-		wp_enqueue_script( 'datepicker.js', $_SESSION["dir_url"].'js/bootstrap-datepicker.js' );
-		wp_enqueue_script( 'datepicker.de.js', $_SESSION["dir_url"].'js/bootstrap-datepicker.de.js' );
+		wp_enqueue_script( 'datepicker.js', TS_DIR_URL.'js/bootstrap-datepicker.js' );
+		wp_enqueue_script( 'datepicker.de.js', TS_DIR_URL.'js/bootstrap-datepicker.de.js' );
 	}
 	add_action( 'wp_footer', 'js_include_function' );
-	wp_enqueue_script( 'ticket.js', $_SESSION["dir_url"].'js/ticket.js', array('jquery') );
+	wp_enqueue_script( 'ticket.js', TS_DIR_URL.'js/ticket.js', array('jquery') );
 	wp_localize_script( 'ticket.js', 'ajax_object',array( 'ajax_url' => admin_url( 'admin-ajax.php' )) );
 }
 add_shortcode('ts_tickets', 'tickets_func');
@@ -93,10 +102,10 @@ function my_plugin_menu() {
 // Lade Script wenn in Menü
 function enqueue_admin_js($hook) {
 	global $dir, $my_page;
-	wp_enqueue_style( 'ts_admin', $_SESSION["dir_url"].'css/admin.css' );
+	wp_enqueue_style( 'ts_admin', TS_DIR_URL.'css/admin.css' );
 	if($my_page === $hook) {
 		wp_enqueue_script( 'jquery' );
-		wp_enqueue_script( 'options-user', $_SESSION["dir_url"].'js/options-user.js', array('jquery') );
+		wp_enqueue_script( 'options-user', TS_DIR_URL.'js/options-user.js', array('jquery') );
 		wp_localize_script( 'options-user', 'ajax_object',array( 'ajax_url' => admin_url( 'admin-ajax.php' )) );
 	}
 }
@@ -106,7 +115,7 @@ function my_plugin_options() {
 	if ( !current_user_can( 'manage_options' ) )  {
 		wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
 	}
-	include_once($_SESSION["dir"].'includes/admin/options-user.php');
+	include_once(TS_DIR.'includes/admin/options-user.php');
 }
 
 // Lade Übersetzungen
@@ -118,7 +127,7 @@ add_action( 'plugins_loaded', 'myplugin_load_textdomain' );
 
 
 //********************* AJAX-Functions *********************
-include_once($_SESSION["dir"].'includes/form-functions.php');
-include_once($_SESSION["dir"].'includes/system-functions.php');
-include_once($_SESSION["dir"].'includes/admin/options-user-functions.php');
+include_once(TS_DIR.'includes/form-functions.php');
+include_once(TS_DIR.'includes/system-functions.php');
+include_once(TS_DIR.'includes/admin/options-user-functions.php');
 ?>
