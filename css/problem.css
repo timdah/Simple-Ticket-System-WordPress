@@ -46,6 +46,10 @@
 	box-sizing: border-box;
 }
 
+#rcheck {
+	display: none !important;
+}
+
 #go {
 	height: 57px !important;
 	font-size: 20px;
