@@ -2,6 +2,7 @@
 * [Screenshots](#screenshots)
 * [Installation](#installation)
 * [Languages](#languages)
+* [Demo](#demo)
 
 ---------
 
