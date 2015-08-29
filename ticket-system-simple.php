@@ -42,7 +42,7 @@ global $wpdb;
 
 // Installation
 function myplugin_activate() {
-    include_once($_SESSION["dir"].'includes/install.php');
+    include_once(TS_DIR.'includes/install.php');
 }
 register_activation_hook( __FILE__, 'myplugin_activate' );
 
