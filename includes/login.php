@@ -14,14 +14,14 @@ $row = $wpdb->get_row($wpdb->prepare($abfrage, $username));
 
 //Wenn Passwort korrekt
 if($row && $row->passwort == $passwort) {
-	//Setze Session-Variable 'username'
-    $_SESSION["username"] = $username;
+	//Setze Cookie 'username'
+	setcookie("username", $username, 0, "/", $_SERVER['SERVER_NAME']);
 	
-	// Setze Session-Variable 'admin'
+	// Setze Cookie 'admin'
 	if($row->admin == 1) {
-		$_SESSION["admin"] = 1;
+		setcookie("admin", 1, 0, "/", $_SERVER['SERVER_NAME']);
 	} else { 
-		$_SESSION["admin"] = 0; 
+		setcookie("admin", 0, 0, "/", $_SERVER['SERVER_NAME']);
 	}
 }
 // Wenn Passwort nicht korrekt	

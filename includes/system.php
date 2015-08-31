@@ -9,7 +9,7 @@ global $wpdb;
 
 
 //Wenn die Session-Variable 'username' nicht gesetzt ist
-if(!isset($_SESSION["username"]))
+if(!isset($_COOKIE["username"]))
 	{
 ?>
 	<div id="ts_content">
@@ -27,7 +27,7 @@ if(!isset($_SESSION["username"]))
 		<?php
 	}
 else {
-	$user = $_SESSION["username"];
+	$user = $_COOKIE["username"];
 ?>
 <div id="ts_content">
 	<div id="nav">
@@ -165,7 +165,7 @@ else {
 										<option selected value="bemerkung"><?php _e('Note', 'ticket-system-simple'); ?></option>
 										<option value="problem"><?php _e('Problem', 'ticket-system-simple'); ?></option>
 										<option value="termin"><?php _e('Appointment', 'ticket-system-simple'); ?></option>
-										<?php if($_SESSION["admin"] == 1) { ?>
+										<?php if($_COOKIE["admin"] == 1) { ?>
 											<option value="bearbeiter"><?php _e('Issuer', 'ticket-system-simple'); ?></option>
 										<?php } ?>
 									</select>	

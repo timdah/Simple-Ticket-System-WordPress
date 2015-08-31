@@ -3,7 +3,7 @@
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 // Um $wpdb nutzen zu können
 global $wpdb;
-$user = $_SESSION["username"];
+$user = $_COOKIE["username"];
 ?>
 
 <?php

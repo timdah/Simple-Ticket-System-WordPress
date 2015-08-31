@@ -26,13 +26,6 @@ Copyright 2015 Tim Dahlmanns
 */
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
-// Start Session when not already started
-function register_session() {
-	if( !session_id() )
-		session_start();
-}
-add_action('init','register_session');
-
 // define constants
 define( 'TS_DIR', plugin_dir_path( __FILE__ ) );
 define( 'TS_DIR_URL', plugin_dir_url(__FILE__) );
