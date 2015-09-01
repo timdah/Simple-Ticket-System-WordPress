@@ -9,7 +9,7 @@ global $wpdb;
 
 
 //Wenn die Session-Variable 'username' nicht gesetzt ist
-if(!isset($_COOKIE["username"]))
+if(!isset($_COOKIE["ts_username"]))
 	{
 ?>
 	<div id="ts_content">
@@ -27,7 +27,7 @@ if(!isset($_COOKIE["username"]))
 		<?php
 	}
 else {
-	$user = $_COOKIE["username"];
+	$user = $_COOKIE["ts_username"];
 ?>
 <div id="ts_content">
 	<div id="nav">

@@ -15,13 +15,13 @@ $row = $wpdb->get_row($wpdb->prepare($abfrage, $username));
 //Wenn Passwort korrekt
 if($row && $row->passwort == $passwort) {
 	//Setze Cookie 'username'
-	setcookie("username", $username, 0, "/", $_SERVER['SERVER_NAME']);
+	setcookie("ts_username", $username, 0, "/", $_SERVER['SERVER_NAME']);
 	
 	// Setze Cookie 'admin'
 	if($row->admin == 1) {
-		setcookie("admin", 1, 0, "/", $_SERVER['SERVER_NAME']);
+		setcookie("ts_admin", 1, 0, "/", $_SERVER['SERVER_NAME']);
 	} else { 
-		setcookie("admin", 0, 0, "/", $_SERVER['SERVER_NAME']);
+		setcookie("ts_admin", 0, 0, "/", $_SERVER['SERVER_NAME']);
 	}
 }
 // Wenn Passwort nicht korrekt	

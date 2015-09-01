@@ -3,7 +3,7 @@
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 // Um $wpdb nutzen zu können
 global $wpdb;
-$user = $_COOKIE["username"];
+$user = $_COOKIE["ts_username"];
 $date = date(get_option('date_format'));
 $timestamp = strtotime($date);
 

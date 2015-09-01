@@ -23,7 +23,7 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 					<!--div style="margin-bottom: 20px"><input type="checkbox" name="status" value="yes"> <?php _e('Status information by E-Mail', 'ticket-system-simple'); ?></input></div-->
 					<?php
 					// Terminfeld wenn eingeloggt
-					if(isset($_COOKIE["username"]))
+					if(isset($_COOKIE["ts_username"]))
 					{
 					?>
 						<span><?php _e('Appointment', 'ticket-system-simple'); ?>:</span>
