@@ -144,7 +144,7 @@ foreach($ticket as $row)
 			</tr>
 			<?php } ?>
 		</table>
-		<?php if($row->bearbeiter == $user || $row->bearbeiter == 'unbekannt' || $_COOKIE["admin"] == 1) { ?>
+		<?php if($row->bearbeiter == $user || $row->bearbeiter == 'unbekannt' || $_COOKIE["ts_admin"] == 1) { ?>
 		<div class="update">
 		<!-- Laden der Texte in Textfeld -->
 		<script>textarea('<?php echo esc_html($row->id); ?>');</script>
@@ -162,7 +162,7 @@ foreach($ticket as $row)
 								<option selected value="bemerkung"><?php _e('Note', 'ticket-system-simple'); ?></option>
 								<option value="problem"><?php _e('Problem', 'ticket-system-simple'); ?></option>
 								<option value="termin"><?php _e('Appointment', 'ticket-system-simple'); ?></option>
-								<?php if($_COOKIE["admin"] == 1) { ?>
+								<?php if($_COOKIE["ts_admin"] == 1) { ?>
 									<option value="bearbeiter"><?php _e('Issuer', 'ticket-system-simple'); ?></option>
 								<?php } ?>
 							</select>	
@@ -200,7 +200,7 @@ foreach($ticket as $row)
 		<?php
 			}
 			// Button um Ticket zurück zu holen
-			else if($row->bearbeiter == $user && $row->geloest == '1' || $row->geloest == '1' && $_COOKIE["admin"] == 1)
+			else if($row->bearbeiter == $user && $row->geloest == '1' || $row->geloest == '1' && $_COOKIE["ts_admin"] == 1)
 			{
 		?>
 				<div class="done" onClick="javascript:undo('<?php echo esc_html($row->id); ?>')" style="background-image: url('<?php echo TS_DIR_URL; ?>img/undo.png')"></div>
@@ -209,7 +209,7 @@ foreach($ticket as $row)
 		?>
 		<?php 
 		// Anzeigen des Bearbeitungsfeld
-		if($row->bearbeiter == $user || $row->bearbeiter == 'unbekannt' || $_COOKIE["admin"] == 1) 
+		if($row->bearbeiter == $user || $row->bearbeiter == 'unbekannt' || $_COOKIE["ts_admin"] == 1) 
 		{	
 		?>
 			<div style="width: 100%; display:flex; justify-content:center;">

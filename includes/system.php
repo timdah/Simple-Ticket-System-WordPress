@@ -7,7 +7,6 @@ $date = date(get_option('date_format'));
 $timestamp = strtotime($date);
 global $wpdb;
 
-
 //Wenn die Session-Variable 'username' nicht gesetzt ist
 if(!isset($_COOKIE["ts_username"]))
 	{
@@ -165,7 +164,7 @@ else {
 										<option selected value="bemerkung"><?php _e('Note', 'ticket-system-simple'); ?></option>
 										<option value="problem"><?php _e('Problem', 'ticket-system-simple'); ?></option>
 										<option value="termin"><?php _e('Appointment', 'ticket-system-simple'); ?></option>
-										<?php if($_COOKIE["admin"] == 1) { ?>
+										<?php if($_COOKIE["ts_admin"] == 1) { ?>
 											<option value="bearbeiter"><?php _e('Issuer', 'ticket-system-simple'); ?></option>
 										<?php } ?>
 									</select>	

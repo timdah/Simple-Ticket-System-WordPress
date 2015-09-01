@@ -1,4 +1,4 @@
- <?php
+<?php
 // Zugriff einschränken
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 // Um $wpdb nutzen zu können
@@ -15,13 +15,13 @@ $row = $wpdb->get_row($wpdb->prepare($abfrage, $username));
 //Wenn Passwort korrekt
 if($row && $row->passwort == $passwort) {
 	//Setze Cookie 'username'
-	setcookie("ts_username", $username, 0, "/", $_SERVER['SERVER_NAME']);
+	setcookie("ts_username", $username, 0, "/");//? "pass" : "fail";
 	
 	// Setze Cookie 'admin'
 	if($row->admin == 1) {
-		setcookie("ts_admin", 1, 0, "/", $_SERVER['SERVER_NAME']);
+		setcookie("ts_admin", 1, 0, "/");
 	} else { 
-		setcookie("ts_admin", 0, 0, "/", $_SERVER['SERVER_NAME']);
+		setcookie("ts_admin", 0, 0, "/");
 	}
 }
 // Wenn Passwort nicht korrekt	
