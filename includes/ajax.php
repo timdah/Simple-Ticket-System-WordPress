@@ -182,28 +182,28 @@ foreach($ticket as $row)
 			if($row->bearbeiter == $user && $row->geloest != '1')
 			{
 		?>
-				<div class="done" onClick="javascript:done('<?php echo esc_html($row->id); ?>')" style="background-image: url('<?php echo TS_DIR_URL; ?>img/done.png')"></div>
+				<div class="done" title="<?php _e('Finish this ticket', 'ticket-system-simple'); ?>" onClick="javascript:done('<?php echo esc_html($row->id); ?>')" style="background-image: url('<?php echo TS_DIR_URL; ?>img/done.png')"></div>
 		<?php
 			} 
 			// Button um Ticket zu nehmen
 			else if($row->bearbeiter == 'unbekannt' && $row->geloest != '1')
 			{
 		?>
-				<div class="done" onClick="javascript:take('<?php echo esc_html($row->id); ?>')" style="background-image: url('<?php echo TS_DIR_URL; ?>img/take.png')"></div>
+				<div class="done" title="<?php _e('Take this ticket', 'ticket-system-simple'); ?>" onClick="javascript:take('<?php echo esc_html($row->id); ?>')" style="background-image: url('<?php echo TS_DIR_URL; ?>img/take.png')"></div>
 		<?php
 			} 
 			// Button um Ticket zu übernehmen
 			else if($row->bearbeiter != 'unbekannt' && $row->bearbeiter != $user && $row->geloest != '1')
 			{
 		?>
-				<div class="done" onClick="javascript:change('<?php echo esc_html($row->id); ?>')" style="background-image: url('<?php echo TS_DIR_URL; ?>img/change.png')"></div>
+				<div class="done" title="<?php _e('Adopt this ticket', 'ticket-system-simple'); ?>" onClick="javascript:change('<?php echo esc_html($row->id); ?>')" style="background-image: url('<?php echo TS_DIR_URL; ?>img/change.png')"></div>
 		<?php
 			}
 			// Button um Ticket zurück zu holen
 			else if($row->bearbeiter == $user && $row->geloest == '1' || $row->geloest == '1' && $_COOKIE["ts_admin"] == 1)
 			{
 		?>
-				<div class="done" onClick="javascript:undo('<?php echo esc_html($row->id); ?>')" style="background-image: url('<?php echo TS_DIR_URL; ?>img/undo.png')"></div>
+				<div class="done" title="<?php _e('Get this ticket back', 'ticket-system-simple'); ?>" onClick="javascript:undo('<?php echo esc_html($row->id); ?>')" style="background-image: url('<?php echo TS_DIR_URL; ?>img/undo.png')"></div>
 		<?php
 			}
 		?>

@@ -35,7 +35,7 @@ else {
 		<a href="javascript:allTickets('my');stopInterval();indicator('26%');buttonCheck('0')"><span><?php _e('My Tickets', 'ticket-system-simple'); ?></span></a>
 		<a href="javascript:allTickets('open');stopInterval();indicator('52%');buttonCheck('0')"><span><?php _e('Open Tickets', 'ticket-system-simple'); ?></span></a>
 		<a id="filter" href="javascript:expand();buttonCheck('0')"><span><?php _e('Filter', 'ticket-system-simple'); ?></span><div id="pseudo"></div></a>
-		<div id="logout" onClick="javascript:logout();"></div>
+		<div id="logout" title="<?php _e('Logout', 'ticket-system-simple'); ?>" onClick="javascript:logout();"></div>
 	</div>
 	<div style="width: calc(100% - 60px);">
 		<div id="suche">
@@ -178,7 +178,7 @@ else {
 					</table>
 					</form>
 				</div>
-				<div class="done" onClick="javascript:done('<?php echo esc_html($row->id); ?>')" style="background-image: url('<?php echo $dir_url; ?>img/done.png')"></div>
+				<div class="done" title="<?php _e('Finish this ticket', 'ticket-system-simple'); ?>" onClick="javascript:done('<?php echo esc_html($row->id); ?>')" style="background-image: url('<?php echo $dir_url; ?>img/done.png')"></div>
 				<div style="width: 100%; display:flex; justify-content:center;">
 					<div class="expand" onClick="javascript:expand2('<?php echo esc_html($row->id); ?>')" style="background-image: url('<?php echo $dir_url; ?>img/expand.png')"></div>
 				</div>

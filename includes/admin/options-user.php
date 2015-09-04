@@ -18,9 +18,9 @@ global $wpdb;
 			<?php _e('Repeat password', 'ticket-system-simple'); ?>:<br>
 			<input id="add_passwd2"type="password" size="24" maxlength="50" name="passwort2"><br><br>
 
-			<?php _e('Salutation', 'ticket-system-simple'); ?>:<br>
+			<!--?php _e('Salutation', 'ticket-system-simple'); ?>:<br>
 			<input id="add_gender_male" type="radio" name="radio" value="Herr" checked><?php _e('Mr', 'ticket-system-simple'); ?><br>
-			<input id="add_gender_female" type="radio" name="radio" value="Frau"><?php _e('Mrs', 'ticket-system-simple'); ?><br><br>
+			<input id="add_gender_female" type="radio" name="radio" value="Frau"><?php _e('Mrs', 'ticket-system-simple'); ?><br><br-->
 			
 			<?php _e('Last name', 'ticket-system-simple'); ?>:<br>
 			<input id="add_lastname" type="text" size="24" maxlength="30" name="name"><br><br>
