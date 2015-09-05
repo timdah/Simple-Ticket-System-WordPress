@@ -169,6 +169,9 @@
 	justify-content: center;
 	padding: 5px;
 }
+.spinner > #ts_load {
+	background: rgba(0,0,0,0);
+}
 
 #ts_content .three-quarters-loader:not(:required) {
   width: 60px;
@@ -206,14 +209,25 @@
 .query .done:hover {
 	box-shadow: 0 2px 8px 0 rgba(0,0,0,0.2) !important;
 }
+.ts_title {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+.ts_title div {
+	color: #e1550a;
+	padding: 5px 0px;
+	font-size: larger;
+}
 .ticket {
 	width: 100%;
 	margin: 0 !important;
 	box-sizing: border-box !important;
 	border-collapse: separate !important;
 	border-spacing: 0 !important;
-	padding: 10px !important;
+	padding: 0px 10px !important;
 	border-bottom: 1px solid rgba(0,0,0,0.1) !important;
+	border-top: 1px solid rgba(0,0,0,0.1) !important;
 	color: black !important;
 	line-height: 1.5 !important;
 }
@@ -222,10 +236,11 @@
 }
 .ticket tr:first-child > td {
 	color: #e1550a !important;
-	border-bottom: 1px solid rgba(0,0,0,0.3) !important;
+	font-size: smaller;
+	border-bottom: 1px solid rgba(0,0,0,0.1) !important;
 }
 .ticket tr > td:first-child {
-	border-right: 1px solid rgba(0,0,0,0.3) !important;
+	border-right: 1px solid rgba(0,0,0,0.1) !important;
 	width: 25% !important;
 	height: 20px !important;
 	padding-right: 5px !important;
@@ -243,7 +258,7 @@
 	border: none;
 }
 .b_top {
-	border-top: 1px solid rgba(0,0,0,0.3) !important;
+	border-top: 1px solid rgba(0,0,0,0.1) !important;
 }
 .smaller {
 	font-size: smaller !important;

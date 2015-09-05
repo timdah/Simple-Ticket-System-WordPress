@@ -71,6 +71,13 @@ foreach($ticket as $row)
 {
 ?>
 	<div id="<?php echo esc_attr($row->id); ?>" class="query">
+		<div class="ts_title">
+			<div>
+			<?php
+				echo esc_html($row->title);
+			?>
+			</div>
+		</div>
 		<table class="ticket">
 			<tr>
 				<td>
@@ -82,7 +89,7 @@ foreach($ticket as $row)
 				<?php
 					if(isset($row->termin))
 					{
-						_e('Appointment', 'ticket-system-simple');
+						_e('Appointment', 'simple-support-ticket-system');
 						echo ": <b>" . esc_html($row->termin) . "</b>";
 					}
 				?>
@@ -133,13 +140,13 @@ foreach($ticket as $row)
 			</tr>
 			<?php if($row->bemerkung != NULL){ ?>
 			<tr>
-				<td class="b_top"><?php _e('Note', 'ticket-system-simple'); ?></td>
+				<td class="b_top"><?php _e('Note', 'simple-support-ticket-system'); ?></td>
 				<td class="b_top"><?php echo nl2br(esc_html($row->bemerkung)); ?></td>
 			</tr>
 			<?php } ?>
 			<?php if($row->loesung != NULL){ ?>
 			<tr>
-				<td class="b_top"><?php _e('Solution', 'ticket-system-simple'); ?></td>
+				<td class="b_top"><?php _e('Solution', 'simple-support-ticket-system'); ?></td>
 				<td class="b_top"><?php echo nl2br(esc_html($row->loesung)); ?></td>
 			</tr>
 			<?php } ?>
@@ -157,20 +164,20 @@ foreach($ticket as $row)
 						<td>
 							<select class="select_2">
 								<?php if($row->bearbeiter != 'unbekannt') { ?>
-									<option value="loesung"><?php _e('Solution', 'ticket-system-simple'); ?></option>
+									<option value="loesung"><?php _e('Solution', 'simple-support-ticket-system'); ?></option>
 								<?php } ?>
-								<option selected value="bemerkung"><?php _e('Note', 'ticket-system-simple'); ?></option>
-								<option value="problem"><?php _e('Problem', 'ticket-system-simple'); ?></option>
-								<option value="termin"><?php _e('Appointment', 'ticket-system-simple'); ?></option>
+								<option selected value="bemerkung"><?php _e('Note', 'simple-support-ticket-system'); ?></option>
+								<option value="problem"><?php _e('Problem', 'simple-support-ticket-system'); ?></option>
+								<option value="termin"><?php _e('Appointment', 'simple-support-ticket-system'); ?></option>
 								<?php if($_COOKIE["ts_admin"] == 1) { ?>
-									<option value="bearbeiter"><?php _e('Issuer', 'ticket-system-simple'); ?></option>
+									<option value="bearbeiter"><?php _e('Issuer', 'simple-support-ticket-system'); ?></option>
 								<?php } ?>
 							</select>	
 						</td>
 					</tr>
 					<tr>
 						<td>
-							<button class="button" type="button" onClick="javascript:update('<?php echo esc_html($row->id); ?>')"><?php _e('Insert', 'ticket-system-simple'); ?></button>
+							<button class="button" type="button" onClick="javascript:update('<?php echo esc_html($row->id); ?>')"><?php _e('Insert', 'simple-support-ticket-system'); ?></button>
 						</td>
 					</tr>		
 				</table>
@@ -182,28 +189,28 @@ foreach($ticket as $row)
 			if($row->bearbeiter == $user && $row->geloest != '1')
 			{
 		?>
-				<div class="done" title="<?php _e('Finish this ticket', 'ticket-system-simple'); ?>" onClick="javascript:done('<?php echo esc_html($row->id); ?>')" style="background-image: url('<?php echo TS_DIR_URL; ?>img/done.png')"></div>
+				<div class="done" title="<?php _e('Finish this ticket', 'simple-support-ticket-system'); ?>" onClick="javascript:done('<?php echo esc_html($row->id); ?>')" style="background-image: url('<?php echo TS_DIR_URL; ?>img/done.png')"></div>
 		<?php
 			} 
 			// Button um Ticket zu nehmen
 			else if($row->bearbeiter == 'unbekannt' && $row->geloest != '1')
 			{
 		?>
-				<div class="done" title="<?php _e('Take this ticket', 'ticket-system-simple'); ?>" onClick="javascript:take('<?php echo esc_html($row->id); ?>')" style="background-image: url('<?php echo TS_DIR_URL; ?>img/take.png')"></div>
+				<div class="done" title="<?php _e('Take this ticket', 'simple-support-ticket-system'); ?>" onClick="javascript:take('<?php echo esc_html($row->id); ?>')" style="background-image: url('<?php echo TS_DIR_URL; ?>img/take.png')"></div>
 		<?php
 			} 
 			// Button um Ticket zu übernehmen
 			else if($row->bearbeiter != 'unbekannt' && $row->bearbeiter != $user && $row->geloest != '1')
 			{
 		?>
-				<div class="done" title="<?php _e('Adopt this ticket', 'ticket-system-simple'); ?>" onClick="javascript:change('<?php echo esc_html($row->id); ?>')" style="background-image: url('<?php echo TS_DIR_URL; ?>img/change.png')"></div>
+				<div class="done" title="<?php _e('Adopt this ticket', 'simple-support-ticket-system'); ?>" onClick="javascript:change('<?php echo esc_html($row->id); ?>')" style="background-image: url('<?php echo TS_DIR_URL; ?>img/change.png')"></div>
 		<?php
 			}
 			// Button um Ticket zurück zu holen
 			else if($row->bearbeiter == $user && $row->geloest == '1' || $row->geloest == '1' && $_COOKIE["ts_admin"] == 1)
 			{
 		?>
-				<div class="done" title="<?php _e('Get this ticket back', 'ticket-system-simple'); ?>" onClick="javascript:undo('<?php echo esc_html($row->id); ?>')" style="background-image: url('<?php echo TS_DIR_URL; ?>img/undo.png')"></div>
+				<div class="done" title="<?php _e('Get this ticket back', 'simple-support-ticket-system'); ?>" onClick="javascript:undo('<?php echo esc_html($row->id); ?>')" style="background-image: url('<?php echo TS_DIR_URL; ?>img/undo.png')"></div>
 		<?php
 			}
 		?>
@@ -222,7 +229,7 @@ foreach($ticket as $row)
 		{
 		?>
 			<div class="done_text">
-				<p><?php _e('done by', 'ticket-system-simple'); ?>: <span style="text-transform: uppercase;"><?php echo esc_html($row->bearbeiter); ?></span>, 
+				<p><?php _e('done by', 'simple-support-ticket-system'); ?>: <span style="text-transform: uppercase;"><?php echo esc_html($row->bearbeiter); ?></span>, 
 				<span><?php echo esc_html($row->ende); ?></span></p>
 			</div>
 		<?php
@@ -232,7 +239,7 @@ foreach($ticket as $row)
 		{
 		?>
 			<div class="while_text">
-				<p><?php _e('under examination by', 'ticket-system-simple'); ?>: <span style="text-transform: uppercase;"><?php echo esc_html($row->bearbeiter); ?></span></p>
+				<p><?php _e('under examination by', 'simple-support-ticket-system'); ?>: <span style="text-transform: uppercase;"><?php echo esc_html($row->bearbeiter); ?></span></p>
 			</div>
 		<?php
 		}
@@ -241,7 +248,7 @@ foreach($ticket as $row)
 		{
 		?>
 			<div class="warn_text">
-				<p><span style="text-transform: uppercase;"><?php _e('overdue', 'ticket-system-simple'); ?></span></p>
+				<p><span style="text-transform: uppercase;"><?php _e('overdue', 'simple-support-ticket-system'); ?></span></p>
 			</div>
 		<?php
 		}
@@ -250,7 +257,7 @@ foreach($ticket as $row)
 		{
 		?>
 			<div class="today_text">
-				<p><span style="text-transform: uppercase;"><?php _e('today', 'ticket-system-simple'); ?></span></p>
+				<p><span style="text-transform: uppercase;"><?php _e('today', 'simple-support-ticket-system'); ?></span></p>
 			</div>
 		<?php
 		}
@@ -264,9 +271,9 @@ foreach($ticket as $row)
 							$days = (strtotime($row->termin) - strtotime($date)) / 86400;
 							if($days === 1)
 							{
-								_e('TOMORROW', 'ticket-system-simple');
+								_e('TOMORROW', 'simple-support-ticket-system');
 							} else {
-								printf(__('Appointment in %s days', 'ticket-system-simple'), $days);
+								printf(__('Appointment in %s days', 'simple-support-ticket-system'), $days);
 							}							
 						?> 
 				</p>

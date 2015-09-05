@@ -13,6 +13,7 @@ function addUser() {
 	var username = jQuery('#add_username').val();
 	var passwort = jQuery('#add_passwd').val();
 	var passwort2 = jQuery('#add_passwd2').val();
+	var mail = jQuery('#add_mail').val();
 	var anrede = 0 ;//jQuery('input[name=radio]:checked').val();
 	var admin = 0;
 	admin = jQuery('input[name=admin]:checked').val();
@@ -23,6 +24,7 @@ function addUser() {
 	'username': username,
 	'passwort': passwort,
 	'passwort2': passwort2,
+	'mail': mail,
 	'anrede': anrede,
 	'name': name,
 	'admin': admin

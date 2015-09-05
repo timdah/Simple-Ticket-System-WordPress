@@ -35,4 +35,11 @@ function LOGOUT_callback() {
 }
 add_action( 'wp_ajax_nopriv_LOGOUT', 'LOGOUT_callback' );
 add_action( 'wp_ajax_LOGOUT', 'LOGOUT_callback' );
+
+function COOKIE_callback() {
+	setcookie("ts_username", $_POST["user"], 0, "/");
+	wp_die();
+}
+add_action( 'wp_ajax_nopriv_COOKIE', 'COOKIE_callback' );
+add_action( 'wp_ajax_COOKIE', 'COOKIE_callback' );
 ?>

@@ -12,12 +12,17 @@ if(!isset($_COOKIE["ts_username"]))
 	{
 ?>
 	<div id="ts_content">
+	<?php
+		if ( is_user_logged_in() ) {
+			_e('Please wait, you are already logged in.', 'simple-support-ticket-system');
+		}
+	?>
 		<div id="ts_load" style="width:60%;"><div class="three-quarters-loader"></div></div>
 		<form id="ticket" onsubmit="login();return false;">
 			<div>
-				<span><?php _e('Username', 'ticket-system-simple'); ?></span>
+				<span><?php _e('Username', 'simple-support-ticket-system'); ?></span>
 				<input id="login_name" type="text" maxlength="50" name="username" autofocus style="text-transform: lowercase;">
-				<span><?php _e('Password', 'ticket-system-simple'); ?></span>
+				<span><?php _e('Password', 'simple-support-ticket-system'); ?></span>
 				<input id="login_passwort" type="password" maxlength="50" name="password">
 				<input id="go" type="submit" value="Login">
 			</div>
@@ -31,30 +36,30 @@ else {
 <div id="ts_content">
 	<div id="nav">
 		<!-- Buttons rufen verschiedene JavaScript Funktionen auf & übergeben Werte an diese -->
-		<a href="javascript:allTickets('new');startInterval();indicator('0%');buttonCheck('1')"><?php _e('New Tickets', 'ticket-system-simple'); ?></a>
-		<a href="javascript:allTickets('my');stopInterval();indicator('26%');buttonCheck('0')"><span><?php _e('My Tickets', 'ticket-system-simple'); ?></span></a>
-		<a href="javascript:allTickets('open');stopInterval();indicator('52%');buttonCheck('0')"><span><?php _e('Open Tickets', 'ticket-system-simple'); ?></span></a>
-		<a id="filter" href="javascript:expand();buttonCheck('0')"><span><?php _e('Filter', 'ticket-system-simple'); ?></span><div id="pseudo"></div></a>
-		<div id="logout" title="<?php _e('Logout', 'ticket-system-simple'); ?>" onClick="javascript:logout();"></div>
+		<a href="javascript:allTickets('new');startInterval();indicator('0%');buttonCheck('1')"><?php _e('New Tickets', 'simple-support-ticket-system'); ?></a>
+		<a href="javascript:allTickets('my');stopInterval();indicator('26%');buttonCheck('0')"><span><?php _e('My Tickets', 'simple-support-ticket-system'); ?></span></a>
+		<a href="javascript:allTickets('open');stopInterval();indicator('52%');buttonCheck('0')"><span><?php _e('Open Tickets', 'simple-support-ticket-system'); ?></span></a>
+		<a id="filter" href="javascript:expand();buttonCheck('0')"><span><?php _e('Filter', 'simple-support-ticket-system'); ?></span><div id="pseudo"></div></a>
+		<div id="logout" title="<?php _e('Logout', 'simple-support-ticket-system'); ?>" onClick="javascript:logout();"></div>
 	</div>
 	<div style="width: calc(100% - 60px);">
 		<div id="suche">
 			<form onsubmit="filter();indicator('78%');stopInterval();return false">
 				<select id="select">
-					<option value="bearbeiter"><?php _e('Issuer', 'ticket-system-simple'); ?></option>
-					<option value="mail"><?php _e('E-Mail', 'ticket-system-simple'); ?></option>
-					<option selected value="geloest"><?php _e('Done', 'ticket-system-simple'); ?></option>
-					<option value="loesung"><?php _e('Solution', 'ticket-system-simple'); ?></option>
-					<option value="name"><?php _e('Name', 'ticket-system-simple'); ?></option>
-					<option value="problem"><?php _e('Problem', 'ticket-system-simple'); ?></option>
-					<option value="termin"><?php _e('Appointment', 'ticket-system-simple'); ?></option>
+					<option value="bearbeiter"><?php _e('Issuer', 'simple-support-ticket-system'); ?></option>
+					<option value="mail"><?php _e('E-Mail', 'simple-support-ticket-system'); ?></option>
+					<option selected value="geloest"><?php _e('Done', 'simple-support-ticket-system'); ?></option>
+					<option value="loesung"><?php _e('Solution', 'simple-support-ticket-system'); ?></option>
+					<option value="name"><?php _e('Name', 'simple-support-ticket-system'); ?></option>
+					<option value="problem"><?php _e('Problem', 'simple-support-ticket-system'); ?></option>
+					<option value="termin"><?php _e('Appointment', 'simple-support-ticket-system'); ?></option>
 				</select>
-				<input id="search" type="text" maxlength="50" name="search" onblur="this.placeholder = '<?php _e('contains', 'ticket-system-simple'); ?>...'" onfocus="this.placeholder = ''" placeholder="<?php _e('contains', 'ticket-system-simple'); ?>...">					
+				<input id="search" type="text" maxlength="50" name="search" onblur="this.placeholder = '<?php _e('contains', 'simple-support-ticket-system'); ?>...'" onfocus="this.placeholder = ''" placeholder="<?php _e('contains', 'simple-support-ticket-system'); ?>...">					
 				<select id="order">
-					<option value="DESC"><?php _e('Newest first', 'ticket-system-simple'); ?></option>
-					<option value="ASC"><?php _e('Oldest first', 'ticket-system-simple'); ?></option>
+					<option value="DESC"><?php _e('Newest first', 'simple-support-ticket-system'); ?></option>
+					<option value="ASC"><?php _e('Oldest first', 'simple-support-ticket-system'); ?></option>
 				</select> 
-				<button  class="button" type="button" onClick="javascript:filter();indicator('78%');stopInterval();"><?php _e('Apply filter', 'ticket-system-simple'); ?></button>
+				<button  class="button" type="button" onClick="javascript:filter();indicator('78%');stopInterval();"><?php _e('Apply filter', 'simple-support-ticket-system'); ?></button>
 			</form>
 		</div>
 	</div>
@@ -77,6 +82,13 @@ else {
 		{
 		?>
 			<div id="<?php echo esc_attr($row->id); ?>" class="query">
+				<div class="ts_title">
+					<div>
+					<?php
+						echo esc_html($row->title);
+					?>
+					</div>
+				</div>
 				<table class="ticket">
 					<tr>
 						<td>
@@ -88,7 +100,7 @@ else {
 						<?php
 							if(isset($row->termin))
 							{
-								_e('Appointment', 'ticket-system-simple');
+								_e('Appointment', 'simple-support-ticket-system');
 								echo ": <b>" . esc_html($row->termin) . "</b>";
 							}
 						?>
@@ -139,13 +151,13 @@ else {
 					</tr>
 					<?php if($row->bemerkung != NULL){ ?>
 					<tr>
-						<td class="b_top"><?php _e('Note', 'ticket-system-simple'); ?></td>
+						<td class="b_top"><?php _e('Note', 'simple-support-ticket-system'); ?></td>
 						<td class="b_top"><?php echo nl2br(esc_html($row->bemerkung)); ?></td>
 					</tr>
 					<?php } ?>
 					<?php if($row->loesung != NULL){ ?>
 					<tr>
-						<td class="b_top"><?php _e('Solution', 'ticket-system-simple'); ?></td>
+						<td class="b_top"><?php _e('Solution', 'simple-support-ticket-system'); ?></td>
 						<td class="b_top"><?php echo nl2br(esc_html($row->loesung)); ?></td>
 					</tr>
 					<?php } ?>
@@ -160,25 +172,25 @@ else {
 								</td>
 								<td>
 									<select class="select_2">
-										<option value="loesung"><?php _e('Solution', 'ticket-system-simple'); ?></option>
-										<option selected value="bemerkung"><?php _e('Note', 'ticket-system-simple'); ?></option>
-										<option value="problem"><?php _e('Problem', 'ticket-system-simple'); ?></option>
-										<option value="termin"><?php _e('Appointment', 'ticket-system-simple'); ?></option>
+										<option value="loesung"><?php _e('Solution', 'simple-support-ticket-system'); ?></option>
+										<option selected value="bemerkung"><?php _e('Note', 'simple-support-ticket-system'); ?></option>
+										<option value="problem"><?php _e('Problem', 'simple-support-ticket-system'); ?></option>
+										<option value="termin"><?php _e('Appointment', 'simple-support-ticket-system'); ?></option>
 										<?php if($_COOKIE["ts_admin"] == 1) { ?>
-											<option value="bearbeiter"><?php _e('Issuer', 'ticket-system-simple'); ?></option>
+											<option value="bearbeiter"><?php _e('Issuer', 'simple-support-ticket-system'); ?></option>
 										<?php } ?>
 									</select>	
 								</td>
 							</tr>
 							<tr>
 								<td>
-									<button class="button" type="button" onClick="javascript:update('<?php echo esc_html($row->id); ?>')"><?php _e('Insert', 'ticket-system-simple'); ?></button>
+									<button class="button" type="button" onClick="javascript:update('<?php echo esc_html($row->id); ?>')"><?php _e('Insert', 'simple-support-ticket-system'); ?></button>
 								</td>
 							</tr>		
 					</table>
 					</form>
 				</div>
-				<div class="done" title="<?php _e('Finish this ticket', 'ticket-system-simple'); ?>" onClick="javascript:done('<?php echo esc_html($row->id); ?>')" style="background-image: url('<?php echo $dir_url; ?>img/done.png')"></div>
+				<div class="done" title="<?php _e('Finish this ticket', 'simple-support-ticket-system'); ?>" onClick="javascript:done('<?php echo esc_html($row->id); ?>')" style="background-image: url('<?php echo $dir_url; ?>img/done.png')"></div>
 				<div style="width: 100%; display:flex; justify-content:center;">
 					<div class="expand" onClick="javascript:expand2('<?php echo esc_html($row->id); ?>')" style="background-image: url('<?php echo $dir_url; ?>img/expand.png')"></div>
 				</div>
@@ -187,7 +199,7 @@ else {
 				{
 				?>
 					<div class="today_text">
-						<p><span style="text-transform: uppercase;"><?php _e('today', 'ticket-system-simple'); ?></span></p>
+						<p><span style="text-transform: uppercase;"><?php _e('today', 'simple-support-ticket-system'); ?></span></p>
 					</div>
 				<?php
 				}
@@ -195,7 +207,7 @@ else {
 				{
 				?>
 					<div class="warn_text">
-						<p><span style="text-transform: uppercase;"><?php _e('overdue', 'ticket-system-simple'); ?></span></p>
+						<p><span style="text-transform: uppercase;"><?php _e('overdue', 'simple-support-ticket-system'); ?></span></p>
 					</div>
 				<?php
 				}
@@ -208,9 +220,9 @@ else {
 									$days = (strtotime($row->termin) - strtotime($date)) / 86400;
 									if($days === 1)
 									{
-										_e('TOMORROW', 'ticket-system-simple');
+										_e('TOMORROW', 'simple-support-ticket-system');
 									} else {
-										printf(__('Appointment in %s days', 'ticket-system-simple'), $days);
+										printf(__('Appointment in %s days', 'simple-support-ticket-system'), $days);
 									}							
 								?> 
 						</p>

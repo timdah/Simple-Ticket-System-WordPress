@@ -8,6 +8,7 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 global $wpdb;
 $absendername = sanitize_text_field($_POST["name"]);
 $absendermail = sanitize_email($_POST["mail"]);
+$title = sanitize_text_field($_POST["title"]);
 $problem = sanitize_text_field($_POST["problem"]);
 if(isset($_POST["rechner"])){$rechner = sanitize_text_field($_POST["rechner"]);} else {$rechner = NULL;}
 if(isset($_POST["raum"])){$raum = sanitize_text_field($_POST["raum"]);} else {$raum = NULL;}
@@ -18,7 +19,7 @@ if(isset($_POST["status"]) && sanitize_text_field($_POST["status"]) == 'yes'){$s
 $zeit = date(get_option('date_format') . ', ' . get_option('time_format'));
 
 // Neues Ticket in die Datenbank eintragen
-$eintragen = $wpdb->query($wpdb->prepare("INSERT INTO wp_sts_tickets (name,mail,problem,zeit) VALUES (%s, %s, %s, %s)", $absendername, $absendermail, $problem, $zeit));
+$eintragen = $wpdb->query($wpdb->prepare("INSERT INTO wp_sts_tickets (name,mail,title,problem,zeit) VALUES (%s, %s, %s, %s, %s)", $absendername, $absendermail, $title, $problem, $zeit));
 
 if($eintragen == true)
 {
@@ -50,16 +51,16 @@ if($eintragen == true)
 			}			
 		}
 	}
-	echo '<p>' . _e('Your problem has been successfully submitted.', 'ticket-system-simple') . '</p>';
+	echo '<p>' . _e('Your problem has been successfully submitted.', 'simple-support-ticket-system') . '</p>';
 	echo '<p><form onsubmit="back();return false;"><input class="button" value="';
-	_e('Back', 'ticket-system-simple');
+	_e('Back', 'simple-support-ticket-system');
 	echo '" type="submit"></input></form></p>';
 }
 else
 {
-	echo '<p>' . _e('Unfortunately, something went wrong, please contact the administrator.', 'ticket-system-simple') . '</p>';
+	echo '<p>' . _e('Unfortunately, something went wrong, please contact the administrator.', 'simple-support-ticket-system') . '</p>';
 	echo '<p><form onsubmit="back();return false;"><input class="button" value="';
-	_e('Back', 'ticket-system-simple');
+	_e('Back', 'simple-support-ticket-system');
 	echo '" type="submit"></input></form></p>';
 }
 ?>

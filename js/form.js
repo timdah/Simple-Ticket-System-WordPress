@@ -14,6 +14,7 @@ function submitTicket() {
 	
 	var name = jQuery('#add_name').val();
 	var mail = jQuery('#add_mail').val();
+	var title = jQuery('#add_title').val();
 	var problem = jQuery('#add_problem').val();
 	var status = jQuery('input[name=status]:checked').val();
 	var telefon = jQuery('#add_telefon').val();
@@ -26,7 +27,8 @@ function submitTicket() {
 	var data = {
 	'action': 'MAIL',
 	'name':name, 
-	'mail':mail, 
+	'mail':mail,
+	'title':title,
 	'problem':problem, 
 	'status':status, 
 	'telefon':telefon, 
@@ -43,7 +45,7 @@ function submitTicket() {
 function back() {
 	var data = {'action': 'FORM'};
 	jQuery.post(ajax_object.ajax_url, data, function(response) {
-		var final_data = $(response).find('#ajax').html();
+		var final_data = jQuery(response).find('#ajax').html();
 		jQuery('#ajax').html(final_data);
 	});
 }

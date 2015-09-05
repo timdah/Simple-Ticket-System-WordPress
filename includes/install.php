@@ -34,4 +34,13 @@ if ($wpdb->get_var("SHOW TABLES LIKE '{$wpdb->prefix}sts_tickets'") != $wpdb->pr
 	ende_timestamp VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL
 	);");
 }
+
+if ($wpdb->get_var("SHOW TABLES LIKE '{$wpdb->prefix}sts_options'") != $wpdb->prefix . 'sts_options'){
+	$wpdb->query("CREATE TABLE {$wpdb->prefix}sts_options (
+	ts_option VARCHAR(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL PRIMARY KEY,
+	ts_value VARCHAR(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
+	);");
+	
+	$wpdb->query("INSERT INTO wp_sts_options (ts_option, ts_value) VALUES ('db_version', '100')");
+}
 ?>

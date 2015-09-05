@@ -3,7 +3,7 @@ Contributors: en0x
 Tags: ticket, simple, system, support, plugin, request, help, desk
 Requires at least: 3.0.1
 Tested up to: 4.3
-Stable tag: 1.0.1
+Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -57,12 +57,14 @@ Not yet!
 
 
 == Changelog ==
+= 1.1 =
+* PLEASE REACTIVATE THE PLUGIN TO APPLY CHANGES THIS TIME
+* When you are already logged in in Wordpress, you don't have to log in again
+* When you are logged in, Name and Email will be filled in into submit form
+* Added a Title to tickets
+* Loading Spinner now with transparent background
 = 1.0.1 =
 * Deleted Salutation because the email function is not ready
 * added titles for buttons
 = 1.0 =
 * First release
-
-== Upgrade notice ==
-= 1.0 =
-First release

@@ -4,9 +4,9 @@ Plugin Name: Support Ticket System
 Plugin URI: http://en00x.github.io/Simple-Ticket-System-WordPress/
 Author: Tim Dahlmanns
 Description: Simple and fast ticket system to receive and store Problems of Customers or Visitors, with a great search function.
-Version: 1.0.1
+Version: 1.1
 Domain Path: /languages
-Text Domain: ticket-system-simple
+Text Domain: simple-support-ticket-system
 License: GPL2
 
 This program is free software: you can redistribute it and/or modify
@@ -29,6 +29,7 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 // define constants
 define( 'TS_DIR', plugin_dir_path( __FILE__ ) );
 define( 'TS_DIR_URL', plugin_dir_url(__FILE__) );
+define( 'DB_VERSION', 102 );
 
 // Use Wordpress Database
 global $wpdb;
@@ -39,11 +40,17 @@ function myplugin_activate() {
 }
 register_activation_hook( __FILE__, 'myplugin_activate' );
 
+// Update
+function db_version_update() {
+	include_once(TS_DIR.'includes/db-update.php');
+}
+add_action( 'init', 'db_version_update' );
+
 
 /* CSS */
 function css_include_function() {
-	wp_enqueue_style( 'it', TS_DIR_URL.'css/it.css' );
-	wp_enqueue_style( 'problem', TS_DIR_URL.'css/problem.css' );
+	wp_enqueue_style( 'it', TS_DIR_URL.'css/ts_system.css' );
+	wp_enqueue_style( 'problem', TS_DIR_URL.'css/ts_form.css' );
 	wp_enqueue_style( 'datepicker', TS_DIR_URL.'css/datepicker.css' );
 }
 add_action( 'wp_enqueue_scripts', 'css_include_function' );
@@ -53,6 +60,17 @@ add_action( 'wp_enqueue_scripts', 'css_include_function' );
 
 // [ts_form]
 function form_func() {
+	if ( is_user_logged_in() ) {
+		if(!isset($_COOKIE["ts_username"])) {
+			$current_user = wp_get_current_user();
+			$user = '[WP]' . $current_user->user_login;
+			wp_enqueue_script( 'cookie.js', TS_DIR_URL.'js/cookie.js', array('jquery') );
+			echo "<script>
+				jQuery(document).ready(function() {
+					setcookie('" . $user . "');
+				});</script>";
+		}
+	}
 	include_once(TS_DIR.'includes/form.php');
 	function js_include_function() {
 		wp_enqueue_script( 'datepicker.js', TS_DIR_URL.'js/bootstrap-datepicker.js' );
@@ -66,6 +84,17 @@ add_shortcode( 'ts_form', 'form_func' );
 
 // [ts_tickets]
 function tickets_func() {
+	if ( is_user_logged_in() ) {
+		if(!isset($_COOKIE["ts_username"])) {
+			$current_user = wp_get_current_user();
+			$user = '[WP]' . $current_user->user_login;
+			wp_enqueue_script( 'cookie.js', TS_DIR_URL.'js/cookie.js', array('jquery') );
+			echo "<script>
+				jQuery(document).ready(function() {
+					setcookie('" . $user . "');
+				});</script>";
+		}
+	}
 	include_once(TS_DIR.'includes/system.php');
 	function js_include_function() {
 		wp_enqueue_script( 'datepicker.js', TS_DIR_URL.'js/bootstrap-datepicker.js' );
@@ -85,8 +114,8 @@ add_action( 'admin_menu', 'my_plugin_menu' );
 
 // Ausgeführte funktion zum Menü hinzufügen
 function my_plugin_menu() {
-	$title = sprintf( __( 'User Administration', 'ticket-system-simple' ));
-	$sub_name = sprintf( __( 'Users', 'ticket-system-simple' ));
+	$title = sprintf( __( 'User Administration', 'simple-support-ticket-system' ));
+	$sub_name = sprintf( __( 'Users', 'simple-support-ticket-system' ));
 	add_menu_page('Ticket System Options', 'Ticket System', 'manage_options', 'Ticket_Allgemein', 'my_plugin_options', 'dashicons-tickets-alt', 27.1);
 	$GLOBALS['my_page'] = add_submenu_page( 'Ticket_Allgemein', $title, $sub_name, 'manage_options', 'my-unique-identifier', 'my_plugin_options' );
 	remove_submenu_page('Ticket_Allgemein', 'Ticket_Allgemein');
@@ -114,7 +143,7 @@ function my_plugin_options() {
 
 // Lade Übersetzungen
 function myplugin_load_textdomain() {
-  load_plugin_textdomain( 'ticket-system-simple', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' ); 
+  load_plugin_textdomain( 'simple-support-ticket-system', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' ); 
 }
 add_action( 'plugins_loaded', 'myplugin_load_textdomain' );
 

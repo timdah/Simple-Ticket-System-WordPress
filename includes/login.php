@@ -26,6 +26,6 @@ if($row && $row->passwort == $passwort) {
 }
 // Wenn Passwort nicht korrekt	
 else if($row == NULL || $row->passwort != $passwort) { 
-	echo '<p>' . _e('Username and/or password were incorrect.', 'ticket-system-simple') . '</p>';
+	echo '<p>' . _e('Username and/or password were incorrect.', 'simple-support-ticket-system') . '</p>';
 }
 ?>

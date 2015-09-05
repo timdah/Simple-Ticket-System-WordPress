@@ -28,8 +28,9 @@
 
 #ticket > div > input  {
 	margin-bottom: 20px;
-	height: 30px;
+	height: 30px !important;
 	border: 1px solid #778495;
+	flex-shrink: 0;
 }
 
 .required {
@@ -50,13 +51,13 @@
 	display: none !important;
 }
 
-#go {
+#ticket > div > #go {
 	height: 57px !important;
 	font-size: 20px;
 	color: white;
 	background: #778495;
 	cursor: pointer;
-	flex-shrink: 0;
+	flex-shrink: 0 !important;
 }
 #go:hover {
 	background: white;
