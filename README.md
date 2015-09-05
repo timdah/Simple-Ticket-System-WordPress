@@ -7,19 +7,18 @@
 ---------
 
 ## Description 
+The idea was it to create a Ticket System completely for the Front-End, and that's the result!
 This plugin adds a ticket system to your page, to handle Questions, problems or other requests from visitors of your page.
 You can use it as a help desk for co-workers in your Intranet or as a contact form for your website for example.
 
 
 Key features:
-*   ticket submission through the frontend
-*   ticket editing through the frontend
-*   wordpress-independent user administration in backend
-*   normal users can take, edit their own and adopt tickets. They also can add appointments.
-*	admin users can edit all tickets and allocate tickets to other users
-*   you can add notes and solutions to every ticket
-*	you can filter tickets for Issuer, name or mail of creator, done tickets, solution or problems
-*	datepicker for appointments
+*   Independet Login from Wordpress, or when you are logged in into Wordpress, then you will be automatically logged in.
+*   Normal users can take, edit their own and adopt tickets. They also can add appointments.
+*	Admin users can edit all tickets and allocate tickets to other users
+*   You can add notes and solutions to every ticket
+*	You can filter tickets for Issuer, name or mail of creator, done tickets, solution or problems
+*	Datepicker for appointments
 
 
 ##  Screenshots
