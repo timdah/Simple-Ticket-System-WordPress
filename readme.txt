@@ -3,7 +3,7 @@ Contributors: en0x
 Tags: ticket, simple, system, support, plugin, request, help, desk
 Requires at least: 3.0.1
 Tested up to: 4.3
-Stable tag: 1.1
+Stable tag: 1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -28,7 +28,7 @@ You can use it as a help desk for co-workers in your Intranet or as a contact fo
 *	Admin users can edit all tickets and allocate tickets to other users
 *   You can add notes and solutions to every ticket
 *	You can filter tickets for Issuer, name or mail of creator, done tickets, solution or problems
-*	Datepicker for appointments
+*	Datepicker Field
 
 == Installation ==
 
@@ -57,6 +57,12 @@ Not yet!
 
 
 == Changelog ==
+= 1.2 =
+* You can rename the optional fields and the datepicker field.
+* You can also hide these fields.
+* Appointment field is now the datepicker field.
+* Appointment added from the issuer are shown under the ticket itself.
+* When logged in Name and Email in Form are not editable.
 = 1.1 =
 * PLEASE REACTIVATE THE PLUGIN TO APPLY CHANGES THIS TIME
 * When you are already logged in in Wordpress, you don't have to log in again

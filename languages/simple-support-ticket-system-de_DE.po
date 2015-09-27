@@ -3,25 +3,25 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Support Ticket System 1.1\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/simple-support-"
-"ticket-system\n"
-"POT-Creation-Date: 2015-09-05 10:47+0200\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/simple-support-ticket-"
+"system\n"
+"POT-Creation-Date: 2015-09-12 17:40+0200\n"
+"PO-Revision-Date: 2015-09-12 17:45+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2015-09-05 11:07+0200\n"
-"Language-Team: \n"
 "X-Generator: Poedit 1.8.4\n"
-"Last-Translator: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Language: de\n"
 
 #: includes/admin/add-user.php:17
 msgid "Input errors. Please fill in all fields correctly."
 msgstr "Bitte füllen Sie alle Felder aus."
 
-#: includes/admin/add-user.php:19 includes/admin/add-user.php:51
-#: includes/mail.php:56 includes/mail.php:63
+#: includes/admin/add-user.php:19 includes/admin/add-user.php:51 includes/mail.php:56
+#: includes/mail.php:63
 msgid "Back"
 msgstr "Zurück"
 
@@ -37,7 +37,37 @@ msgstr "Fehler beim erstellen des Benutzers"
 msgid "Username already exists"
 msgstr "Dieser Benutzername existiert bereits! Wählen Sie einen anderen!"
 
-#: includes/admin/options-user.php:7 ticket-system-simple.php:117
+#: includes/admin/options-general.php:12 simple-support-ticket-system.php:114
+msgid "General Options"
+msgstr "Allgemeine Einstellungen"
+
+#: includes/admin/options-general.php:19
+msgid "Title Optional Field 1:"
+msgstr "Titel Optionales Feld 1:"
+
+#: includes/admin/options-general.php:27
+msgid "Title Optional Field 2:"
+msgstr "Titel Optionales Feld 2:"
+
+#: includes/admin/options-general.php:35
+msgid "Title Optional Field 3:"
+msgstr "Titel Optionales Feld 3:"
+
+#: includes/admin/options-general.php:43
+msgid "Title Datepicker Field:"
+msgstr "Titel Datepicker Feld:"
+
+#: includes/admin/options-general.php:51
+msgid "An empty Title will hide this Field in the Submit-Form"
+msgstr ""
+"Eine leeres Eingabefeld führt dazu, dass dieses Feld nicht mehr angezeigt wird im "
+"Formular."
+
+#: includes/admin/options-general.php:52
+msgid "Save Settings"
+msgstr "Einstellungen speichern"
+
+#: includes/admin/options-user.php:7 simple-support-ticket-system.php:112
 msgid "User Administration"
 msgstr "Benutzerverwaltung"
 
@@ -53,7 +83,7 @@ msgstr "Dein Passwort:"
 msgid "Repeat password:"
 msgstr "Passwort wiederholen:"
 
-#: includes/admin/options-user.php:21 includes/form.php:25
+#: includes/admin/options-user.php:21 includes/form.php:33
 msgid "E-Mail:"
 msgstr "E-Mail:"
 
@@ -70,8 +100,8 @@ msgid "Last name:"
 msgstr "Nachname:"
 
 #: includes/admin/options-user.php:31
-msgid "Admin"
-msgstr "Admin"
+msgid "Admin:"
+msgstr "Admin:"
 
 #: includes/admin/options-user.php:34
 msgid "Add user"
@@ -80,11 +110,6 @@ msgstr "Benutzer hinzufügen"
 #: includes/admin/options-user.php:47
 msgid "Delete"
 msgstr "Löschen"
-
-#: includes/ajax.php:92 includes/ajax.php:171 includes/system.php:55
-#: includes/system.php:103 includes/system.php:178
-msgid "Appointment"
-msgstr "Termin"
 
 #: includes/ajax.php:143 includes/ajax.php:169 includes/system.php:154
 #: includes/system.php:176
@@ -99,6 +124,10 @@ msgstr "Lösung"
 #: includes/ajax.php:170 includes/system.php:54 includes/system.php:177
 msgid "Problem"
 msgstr "Problem"
+
+#: includes/ajax.php:171 includes/system.php:55 includes/system.php:178
+msgid "Appointment"
+msgstr "Termin"
 
 #: includes/ajax.php:173 includes/system.php:49 includes/system.php:180
 msgid "Issuer"
@@ -148,39 +177,23 @@ msgstr "MORGEN"
 msgid "Appointment in %s days"
 msgstr "Termin in %s Tagen"
 
-#: includes/form.php:23
+#: includes/form.php:31
 msgid "Name:"
 msgstr "Name:"
 
-#: includes/form.php:27
-msgid "Optional Field 1:"
-msgstr "Optionales Feld 1:"
-
-#: includes/form.php:29
-msgid "Optional Field 2:"
-msgstr "Optionales Feld 2:"
-
-#: includes/form.php:31
-msgid "Optional Field 3:"
-msgstr " Optionales Feld 3:"
-
-#: includes/form.php:35
+#: includes/form.php:49
 msgid "Title:"
 msgstr "Titel:"
 
-#: includes/form.php:37
+#: includes/form.php:51
 msgid "Problem:"
 msgstr "Problem:"
 
-#: includes/form.php:39
+#: includes/form.php:53
 msgid "Status information by E-Mail"
 msgstr "Statusinformationen per E-Mail"
 
-#: includes/form.php:45
-msgid "Appointment:"
-msgstr "Termin:"
-
-#: includes/form.php:61
+#: includes/form.php:69
 msgid "Report problem"
 msgstr "Problem melden"
 
@@ -256,11 +269,15 @@ msgstr "Alte zuerst"
 msgid "Apply filter"
 msgstr "Filter anwenden"
 
-#: ticket-system-simple.php:118
+#: simple-support-ticket-system.php:113
 msgid "Users"
 msgstr "Benutzer"
 
-#: ticket-system-simple.php:139
+#: simple-support-ticket-system.php:115
+msgid "General"
+msgstr "Allgemein"
+
+#: simple-support-ticket-system.php:143 simple-support-ticket-system.php:151
 msgid "You do not have sufficient permissions to access this page."
 msgstr "Deine Berechtigung reicht nicht aus, um auf diese Seite zuzugreifen"
 
@@ -277,9 +294,24 @@ msgid ""
 "Simple and fast ticket system to receive and store Problems of Customers or "
 "Visitors, with a great search function."
 msgstr ""
-"Einfaches und schnelles Ticketsystem um Anfragen und Probleme entgegen zu "
-"nehmen, mit einer detaillierten Suchfunktion."
+"Einfaches und schnelles Ticketsystem um Anfragen und Probleme entgegen zu nehmen, "
+"mit einer detaillierten Suchfunktion."
 
 #. Author of the plugin/theme
 msgid "Tim Dahlmanns"
 msgstr "Tim Dahlmanns"
+
+#~ msgid "Admin"
+#~ msgstr "Admin"
+
+#~ msgid "Optional Field 1:"
+#~ msgstr "Optionales Feld 1:"
+
+#~ msgid "Optional Field 2:"
+#~ msgstr "Optionales Feld 2:"
+
+#~ msgid "Optional Field 3:"
+#~ msgstr " Optionales Feld 3:"
+
+#~ msgid "Appointment:"
+#~ msgstr "Termin:"

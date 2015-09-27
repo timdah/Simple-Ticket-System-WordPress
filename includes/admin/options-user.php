@@ -28,7 +28,7 @@ global $wpdb;
 			<?php _e('Last name:', 'simple-support-ticket-system'); ?><br>
 			<input id="add_lastname" type="text" size="24" maxlength="30" name="name"><br><br>
 			
-			<?php _e('Admin', 'simple-support-ticket-system'); ?>:
+			<?php _e('Admin:', 'simple-support-ticket-system'); ?>
 			<input id="add_admin" type="checkbox" name="admin" value="1"><br>
 
 			<p class="submit"><input class="button button-primary" type="submit" value="<?php _e('Add user', 'simple-support-ticket-system'); ?>"></input></p>

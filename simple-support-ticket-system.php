@@ -4,7 +4,7 @@ Plugin Name: Support Ticket System
 Plugin URI: http://en00x.github.io/Simple-Ticket-System-WordPress/
 Author: Tim Dahlmanns
 Description: Simple and fast ticket system to receive and store Problems of Customers or Visitors, with a great search function.
-Version: 1.1
+Version: 1.2
 Domain Path: /languages
 Text Domain: simple-support-ticket-system
 License: GPL2
@@ -29,7 +29,7 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 // define constants
 define( 'TS_DIR', plugin_dir_path( __FILE__ ) );
 define( 'TS_DIR_URL', plugin_dir_url(__FILE__) );
-define( 'DB_VERSION', 102 );
+define( 'DB_VERSION', 103 );
 
 // Use Wordpress Database
 global $wpdb;
@@ -58,8 +58,8 @@ add_action( 'wp_enqueue_scripts', 'css_include_function' );
 
 /* Shortcodes */
 
-// [ts_form]
-function form_func() {
+// Login check
+function login_check() {
 	if ( is_user_logged_in() ) {
 		if(!isset($_COOKIE["ts_username"])) {
 			$current_user = wp_get_current_user();
@@ -71,6 +71,11 @@ function form_func() {
 				});</script>";
 		}
 	}
+}
+
+// [ts_form]
+function form_func() {
+	login_check();
 	include_once(TS_DIR.'includes/form.php');
 	function js_include_function() {
 		wp_enqueue_script( 'datepicker.js', TS_DIR_URL.'js/bootstrap-datepicker.js' );
@@ -84,17 +89,7 @@ add_shortcode( 'ts_form', 'form_func' );
 
 // [ts_tickets]
 function tickets_func() {
-	if ( is_user_logged_in() ) {
-		if(!isset($_COOKIE["ts_username"])) {
-			$current_user = wp_get_current_user();
-			$user = '[WP]' . $current_user->user_login;
-			wp_enqueue_script( 'cookie.js', TS_DIR_URL.'js/cookie.js', array('jquery') );
-			echo "<script>
-				jQuery(document).ready(function() {
-					setcookie('" . $user . "');
-				});</script>";
-		}
-	}
+	login_check();
 	include_once(TS_DIR.'includes/system.php');
 	function js_include_function() {
 		wp_enqueue_script( 'datepicker.js', TS_DIR_URL.'js/bootstrap-datepicker.js' );
@@ -114,31 +109,48 @@ add_action( 'admin_menu', 'my_plugin_menu' );
 
 // Ausgeführte funktion zum Menü hinzufügen
 function my_plugin_menu() {
-	$title = sprintf( __( 'User Administration', 'simple-support-ticket-system' ));
-	$sub_name = sprintf( __( 'Users', 'simple-support-ticket-system' ));
+	$users_title = sprintf( __( 'User Administration', 'simple-support-ticket-system' ));
+	$users_sub_name = sprintf( __( 'Users', 'simple-support-ticket-system' ));
+	$general_title = sprintf( __( 'General Options', 'simple-support-ticket-system' ));
+	$general_sub_name = sprintf( __( 'General', 'simple-support-ticket-system' ));
 	add_menu_page('Ticket System Options', 'Ticket System', 'manage_options', 'Ticket_Allgemein', 'my_plugin_options', 'dashicons-tickets-alt', 27.1);
-	$GLOBALS['my_page'] = add_submenu_page( 'Ticket_Allgemein', $title, $sub_name, 'manage_options', 'my-unique-identifier', 'my_plugin_options' );
+	$GLOBALS['page_general'] = add_submenu_page( 'Ticket_Allgemein', $general_title, $general_sub_name, 'manage_options', 'general-unique-identifier', 'general_plugin_options' );
+	$GLOBALS['page_users'] = add_submenu_page( 'Ticket_Allgemein', $users_title, $users_sub_name, 'manage_options', 'users-unique-identifier', 'users_plugin_options' );
 	remove_submenu_page('Ticket_Allgemein', 'Ticket_Allgemein');
 	add_action('admin_enqueue_scripts', 'enqueue_admin_js');
 }
 
 // Lade Script wenn in Menü
 function enqueue_admin_js($hook) {
-	global $dir, $my_page;
-	wp_enqueue_style( 'ts_admin', TS_DIR_URL.'css/admin.css' );
-	if($my_page === $hook) {
+	global $dir, $page_users, $page_general;
+	if($page_users === $hook) {
+		wp_enqueue_style( 'ts_users', TS_DIR_URL.'css/admin_users.css' );
 		wp_enqueue_script( 'jquery' );
 		wp_enqueue_script( 'options-user', TS_DIR_URL.'js/options-user.js', array('jquery') );
 		wp_localize_script( 'options-user', 'ajax_object',array( 'ajax_url' => admin_url( 'admin-ajax.php' )) );
+	}	
+	if($page_general === $hook) {
+		wp_enqueue_style( 'ts_general', TS_DIR_URL.'css/admin_general.css' );
+		wp_enqueue_script( 'jquery' );
+		wp_enqueue_script( 'options-general', TS_DIR_URL.'js/options-general.js', array('jquery') );
+		wp_localize_script( 'options-general', 'ajax_object',array( 'ajax_url' => admin_url( 'admin-ajax.php' )) );
 	}
 }
 
-// Inhalt der Menü Seite
-function my_plugin_options() {
+// Inhalt der Menü Seite Users
+function users_plugin_options() {
 	if ( !current_user_can( 'manage_options' ) )  {
 		wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
 	}
 	include_once(TS_DIR.'includes/admin/options-user.php');
+}
+
+// Inhalt der Menü Seite General
+function general_plugin_options() {
+	if ( !current_user_can( 'manage_options' ) )  {
+		wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
+	}
+	include_once(TS_DIR.'includes/admin/options-general.php');
 }
 
 // Lade Übersetzungen
@@ -152,5 +164,5 @@ add_action( 'plugins_loaded', 'myplugin_load_textdomain' );
 //********************* AJAX-Functions *********************
 include_once(TS_DIR.'includes/form-functions.php');
 include_once(TS_DIR.'includes/system-functions.php');
-include_once(TS_DIR.'includes/admin/options-user-functions.php');
+include_once(TS_DIR.'includes/admin/options-functions.php');
 ?>

@@ -98,10 +98,10 @@ else {
 						</td>
 						<td style="text-align:right">
 						<?php
-							if(isset($row->termin))
+							if(isset($row->datepicker))
 							{
-								_e('Appointment', 'simple-support-ticket-system');
-								echo ": <b>" . esc_html($row->termin) . "</b>";
+								echo $wpdb->get_var("SELECT ts_value FROM wp_sts_options WHERE ts_option = 'datepicker'");
+								echo ": <b>" . esc_html($row->datepicker) . "</b>";
 							}
 						?>
 						</td>

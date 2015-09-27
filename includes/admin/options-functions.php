@@ -18,4 +18,16 @@ function USERS_callback() {
 	wp_die();
 }
 add_action( 'wp_ajax_USERS', 'USERS_callback' );
+
+function SAVE_callback() {
+	include_once(TS_DIR.'includes/admin/general-save.php');
+	wp_die();
+}
+add_action( 'wp_ajax_SAVE', 'SAVE_callback' );
+
+function GENERAL_LOAD_callback() {
+	include_once(TS_DIR.'includes/admin/options-general.php');
+	wp_die();
+}
+add_action( 'wp_ajax_GENERAL_LOAD', 'GENERAL_LOAD_callback' );
 ?>

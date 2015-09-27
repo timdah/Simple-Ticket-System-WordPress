@@ -43,7 +43,7 @@ if($eintragen == true)
 			if($termin != NULL)
 			{
 				$time = strtotime($termin);
-				$wpdb->query($wpdb->prepare("UPDATE wp_sts_tickets SET termin=%s, termin_timestamp=%s WHERE id='$id->id'", $termin, $time));
+				$wpdb->query($wpdb->prepare("UPDATE wp_sts_tickets SET datepicker=%s WHERE id='$id->id'", $termin));
 			}
 			if($status != NULL)
 			{

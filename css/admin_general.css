@@ -1,0 +1,89 @@
+#ts_head {
+	width: calc(100% - 20px);
+	max-width: 800px;
+	text-align: center;
+	font-size: 30px;
+}
+
+#ts_load {
+	display: flex;
+	width: calc(100% - 20px);
+	max-width: 800px;
+	align-items: center;
+	justify-content: center;
+}
+
+#add_form {
+	width: calc(100% - 20px);
+	max-width: 800px;
+}
+
+#add_form table {
+	width: 100%;
+	box-sizing: border-box !important;
+	border-collapse: separate !important;
+	border-spacing: 0 !important;
+}
+
+#add_form table tr {
+	line-height: 3;
+}
+
+h3 {
+	margin-top: 5px;
+	color: red;
+}
+
+
+/* Thanks to css-spinners.com */
+@-moz-keyframes three-quarters-loader {
+  0% {
+    -moz-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -moz-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes three-quarters-loader {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes three-quarters-loader {
+  0% {
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+/* :not(:required) hides this rule from IE9 and below */
+.three-quarters-loader:not(:required) {
+  -moz-animation: three-quarters-loader 1250ms infinite linear;
+  -webkit-animation: three-quarters-loader 1250ms infinite linear;
+  animation: three-quarters-loader 1250ms infinite linear;
+  border: 8px solid #2faadd;
+  border-right-color: transparent;
+  border-radius: 50%;
+  box-sizing: border-box;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  text-indent: -9999px;
+  width: 50px;
+  height: 50px;
+  visibility: hidden;
+}
