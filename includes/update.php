@@ -9,14 +9,14 @@ $user = $_COOKIE["ts_username"];
 <?php
 $id = sanitize_text_field($_POST["id"]);
 $status = NULL;
-$query_stat = $wpdb->get_results("SELECT status, mail FROM wp_sts_tickets WHERE id='$id'");
+$query_stat = $wpdb->get_results($wpdb->prpare("SELECT status, mail FROM wp_sts_tickets WHERE id=%d",$id));
 foreach($query_stat as $row)
 {
 	if($row->status === '1')
 	{
 		$status = '1';
 		$GLOBALS["mail"] = $row->mail;
-		$query_stat2 = $wpdb->get_results("SELECT anrede,name FROM wp_sts_login WHERE username='$user'");
+		$query_stat2 = $wpdb->get_results($wpdb->prepare("SELECT anrede,name FROM wp_sts_login WHERE username=%s",$user));
 		foreach($query_stat2 as $row2)
 		{
 			$GLOBALS["anrede"] = $row2->anrede;
@@ -34,17 +34,17 @@ if(isset($_POST["what"]))
 		$stamp = time();
 		$zeit = date(get_option('date_format') . ', ' . get_option('time_format'));
 		
-		$query = $wpdb->query("UPDATE wp_sts_tickets SET geloest = CASE WHEN bearbeiter = '$user' THEN '1' ELSE '0' END, ende = CASE WHEN bearbeiter = '$user' THEN '$zeit' ELSE '' END, ende_timestamp = '$stamp' WHERE id='$id'");
+		$query = $wpdb->query($wpdb->prepare("UPDATE wp_sts_tickets SET geloest = CASE WHEN bearbeiter = %s THEN '1' ELSE '0' END, ende = CASE WHEN bearbeiter = %s THEN %s ELSE '' END, ende_timestamp = %s WHERE id=%d",$user,$user,$zeit,$stamp,$id));
 	}
 	// Das Ticket wird übernommen, wenn noch kein Bearbeiter eingetragen ist
 	else if($what == 'take')
 	{
-		$query = $wpdb->query("UPDATE wp_sts_tickets SET bearbeiter = CASE WHEN bearbeiter = 'unbekannt' THEN '$user' ELSE bearbeiter END WHERE id='$id'");
+		$query = $wpdb->query($wpdb->prepare("UPDATE wp_sts_tickets SET bearbeiter = CASE WHEN bearbeiter = 'unbekannt' THEN %s ELSE bearbeiter END WHERE id=%d",$user,$id));
 	} 
 	// Ticket wird übernommen, wenn ein Benutzer eingetragen ist
 	else if($what == 'change')
 	{
-		$query = $wpdb->query("UPDATE wp_sts_tickets SET bearbeiter = '$user' WHERE id='$id'");
+		$query = $wpdb->query($wpdb->prepare("UPDATE wp_sts_tickets SET bearbeiter = %s WHERE id=%d",$user,$id));
 		if($status == '1')
 		{
 			//set Post variables
