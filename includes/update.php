@@ -9,7 +9,7 @@ $user = $_COOKIE["ts_username"];
 <?php
 $id = sanitize_text_field($_POST["id"]);
 $status = NULL;
-$query_stat = $wpdb->get_results($wpdb->prpare("SELECT status, mail FROM wp_sts_tickets WHERE id=%d",$id));
+$query_stat = $wpdb->get_results($wpdb->prepare("SELECT status, mail FROM wp_sts_tickets WHERE id=%d",$id));
 foreach($query_stat as $row)
 {
 	if($row->status === '1')

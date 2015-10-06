@@ -25,29 +25,29 @@ if($eintragen == true)
 {
 	if($rechner != NULL || $raum != NULL || $telefon != NULL || $termin != NULL || $status != NULL)
 	{
-		$query = $wpdb->get_results("SELECT id FROM wp_sts_tickets WHERE problem = '$problem' LIMIT 1");
+		$query = $wpdb->get_results($wpdb->prepare("SELECT id FROM wp_sts_tickets WHERE problem = %s LIMIT 1", $problem));
 		foreach($query as $id)
 		{
 			if($rechner != NULL)
 			{
-				$wpdb->query($wpdb->prepare("UPDATE wp_sts_tickets SET rechner=%s WHERE id='$id->id'", $rechner));
+				$wpdb->query($wpdb->prepare("UPDATE wp_sts_tickets SET rechner=%s WHERE id=%d", $rechner, $id->id));
 			}
 			if($raum != NULL)
 			{
-				$wpdb->query($wpdb->prepare("UPDATE wp_sts_tickets SET raum=%s WHERE id='$id->id'", $raum));
+				$wpdb->query($wpdb->prepare("UPDATE wp_sts_tickets SET raum=%s WHERE id=%d", $raum, $id->id));
 			}
 			if($telefon != NULL)
 			{
-				$wpdb->query($wpdb->prepare("UPDATE wp_sts_tickets SET telefon=%s WHERE id='$id->id'", $telefon));
+				$wpdb->query($wpdb->prepare("UPDATE wp_sts_tickets SET telefon=%s WHERE id=%d", $telefon, $id->id));
 			}
 			if($termin != NULL)
 			{
 				$time = strtotime($termin);
-				$wpdb->query($wpdb->prepare("UPDATE wp_sts_tickets SET datepicker=%s WHERE id='$id->id'", $termin));
+				$wpdb->query($wpdb->prepare("UPDATE wp_sts_tickets SET datepicker=%s WHERE id=%d", $termin, $id->id));
 			}
 			if($status != NULL)
 			{
-				$wpdb->query("UPDATE wp_sts_tickets SET status='1' WHERE id='$id->id'");
+				$wpdb->query($wpdb->prepare("UPDATE wp_sts_tickets SET status='1' WHERE id=%d", $id->id));
 			}			
 		}
 	}

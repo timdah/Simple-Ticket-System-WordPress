@@ -71,13 +71,14 @@ else {
 		<?php
 		//Verbindung zur Datenbank		
 		//Abfrage der eigenen Tickets
-		$ticket = $wpdb->get_results("SELECT * FROM wp_sts_tickets WHERE geloest='0' AND bearbeiter='$user' AND termin_timestamp<'$timestamp'
+		$ticket = $wpdb->get_results($wpdb->prepare("SELECT * FROM wp_sts_tickets WHERE geloest='0' AND bearbeiter=%s AND termin_timestamp<%d
 					UNION
-				   SELECT * FROM wp_sts_tickets WHERE geloest='0' AND bearbeiter='$user' AND termin_timestamp='$timestamp'
+				   SELECT * FROM wp_sts_tickets WHERE geloest='0' AND bearbeiter=%s AND termin_timestamp=%d
 					UNION
-				   SELECT * FROM wp_sts_tickets WHERE geloest='0' AND bearbeiter='$user' AND termin IS NULL
-					UNION
-				   SELECT * FROM wp_sts_tickets WHERE geloest='0' AND bearbeiter='$user' AND termin_timestamp>'$timestamp' ");
+				   SELECT * FROM wp_sts_tickets WHERE geloest='0' AND bearbeiter=%s AND termin IS NULL
+				    UNION
+				   SELECT * FROM wp_sts_tickets WHERE geloest='0' AND bearbeiter=%s AND termin_timestamp>%d ",
+				   $user, $timestamp, $user, $timestamp, $user, $user, $timestamp));
 		foreach($ticket as $row)
 		{
 		?>
