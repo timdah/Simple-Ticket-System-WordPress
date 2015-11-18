@@ -1,11 +1,27 @@
 <?php
 // Zugriff einschränken
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
+global $wpdb;
 ?>
 
 <?php
-// Um $wpdb nutzen zu können
-global $wpdb;
+// Check if JavaScript is manipulated
+function checkText($str) {
+	if(strlen(trim($str)) == 0) {
+		echo '<p>' . _e('Let JavaScript do what it is supposed to do!', 'simple-support-ticket-system') . '</p>';
+		echo '<p><form onsubmit="back();return false;"><input class="button" value="';
+		_e('Back', 'simple-support-ticket-system');
+		echo '" type="submit"></input></form></p>';
+		// abort script
+		exit;
+	} else {
+		return true;
+	}
+}
+
+// Check for invalid Text
+checkText($_POST["name"]); checkText($_POST["mail"]); checkText($_POST["title"]); checkText($_POST["problem"]);
+
 $absendername = sanitize_text_field($_POST["name"]);
 $absendermail = sanitize_email($_POST["mail"]);
 $title = sanitize_text_field($_POST["title"]);

@@ -4,7 +4,7 @@ Plugin Name: Support Ticket System
 Plugin URI: http://en00x.github.io/Simple-Ticket-System-WordPress/
 Author: Tim Dahlmanns
 Description: Simple and fast ticket system to receive and store Problems of Customers or Visitors, with a great search function.
-Version: 1.2
+Version: 1.2.2
 Domain Path: /languages
 Text Domain: simple-support-ticket-system
 License: GPL2
@@ -42,7 +42,9 @@ register_activation_hook( __FILE__, 'myplugin_activate' );
 
 // Update
 function db_version_update() {
-	include_once(TS_DIR.'includes/db-update.php');
+	if( is_admin() ) {
+		include_once(TS_DIR.'includes/db-update.php');
+	}
 }
 add_action( 'init', 'db_version_update' );
 

@@ -3,7 +3,7 @@ Contributors: en0x
 Tags: ticket, simple, system, support, plugin, request, help, desk
 Requires at least: 3.0.1
 Tested up to: 4.3
-Stable tag: 1.2
+Stable tag: 1.2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -25,10 +25,11 @@ You can use it as a help desk for co-workers in your Intranet or as a contact fo
 
 *   Independet Login from Wordpress, or when you are logged in into Wordpress, then you will be automatically logged in.
 *   Normal users can take, edit their own and adopt tickets. They also can add appointments.
-*	Admin users can edit all tickets and allocate tickets to other users
-*   You can add notes and solutions to every ticket
-*	You can filter tickets for Issuer, name or mail of creator, done tickets, solution or problems
+*	Admin users can edit all tickets and allocate tickets to other users.
+*   You can add notes and solutions to every ticket.
+*	You can filter tickets for Issuer, name or mail of creator, done tickets, solution or problems.
 *	Datepicker Field
+*	Under "New Tickets" the tickets automatically reload every 30 seconds.
 
 == Installation ==
 
@@ -57,6 +58,12 @@ Not yet!
 
 
 == Changelog ==
+= 1.2.2 =
+* Only whitespace in necessary fields isn't allowed anymore.
+* Database Update only loads when user is admin.
+= 1.2.1 =
+* Security Update
+* Special thanks to the user "iberiam"
 = 1.2 =
 * You can rename the optional fields and the datepicker field.
 * You can also hide these fields.

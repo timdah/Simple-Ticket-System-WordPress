@@ -9,6 +9,16 @@ jQuery(document).ready(function() {
 	  });  
 });
 
+function checkText(string) {
+	if (/\S/.test(string)) {
+		// string is not empty and not just whitespace
+		return true;
+	} else {
+		alert("Invalid Input");
+		return false;
+	}
+}
+
 function submitTicket() {
 	if(jQuery('#rcheck').val() != ''){return;}
 	
@@ -24,22 +34,25 @@ function submitTicket() {
 		var termin = jQuery('#add_termin').val();
 	} else {var termin = '';}
 	
-	var data = {
-	'action': 'MAIL',
-	'name':name, 
-	'mail':mail,
-	'title':title,
-	'problem':problem, 
-	'status':status, 
-	'telefon':telefon, 
-	'raum':raum, 
-	'rechner':rechner, 
-	'termin':termin
-	};
+	if(checkText(name) && checkText(mail) && checkText(title) && checkText(problem)) {
+	
+		var data = {
+		'action': 'MAIL',
+		'name':name, 
+		'mail':mail,
+		'title':title,
+		'problem':problem, 
+		'status':status, 
+		'telefon':telefon, 
+		'raum':raum, 
+		'rechner':rechner, 
+		'termin':termin
+		};
 
-	jQuery.post(ajax_object.ajax_url, data, function(response) {
-		jQuery('#ajax').html(response);
-	});
+		jQuery.post(ajax_object.ajax_url, data, function(response) {
+			jQuery('#ajax').html(response);
+		});
+	}
 }
 
 function back() {
