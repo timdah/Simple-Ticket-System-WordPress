@@ -22,13 +22,13 @@ function checkText($str) {
 // Check for invalid Text
 checkText($_POST["name"]); checkText($_POST["mail"]); checkText($_POST["title"]); checkText($_POST["problem"]);
 
-$absendername = sanitize_text_field($_POST["name"]);
-$absendermail = sanitize_email($_POST["mail"]);
-$title = sanitize_text_field($_POST["title"]);
-$problem = sanitize_text_field($_POST["problem"]);
-if(isset($_POST["rechner"])){$rechner = sanitize_text_field($_POST["rechner"]);} else {$rechner = NULL;}
-if(isset($_POST["raum"])){$raum = sanitize_text_field($_POST["raum"]);} else {$raum = NULL;}
-if(isset($_POST["telefon"])){$telefon = sanitize_text_field($_POST["telefon"]);} else {$telefon = NULL;}
+$absendername = stripslashes(sanitize_text_field($_POST["name"]));
+$absendermail = stripslashes(sanitize_email($_POST["mail"]));
+$title = stripslashes(sanitize_text_field($_POST["title"]));
+$problem = stripslashes(implode( "\n", array_map( 'sanitize_text_field', explode( "\n", $_POST['problem'] ) ) ) );
+if(isset($_POST["rechner"])){$rechner = stripslashes(sanitize_text_field($_POST["rechner"]));} else {$rechner = NULL;}
+if(isset($_POST["raum"])){$raum = stripslashes(sanitize_text_field($_POST["raum"]));} else {$raum = NULL;}
+if(isset($_POST["telefon"])){$telefon = stripslashes(sanitize_text_field($_POST["telefon"]));} else {$telefon = NULL;}
 if(isset($_POST["termin"])){$termin = sanitize_text_field($_POST["termin"]);} else {$termin = NULL;}
 if(isset($_POST["status"]) && sanitize_text_field($_POST["status"]) == 'yes'){$status = 'yes';}else{$status = NULL;}
 
@@ -39,35 +39,32 @@ $eintragen = $wpdb->query($wpdb->prepare("INSERT INTO wp_sts_tickets (name,mail,
 
 if($eintragen == true)
 {
-	if($rechner != NULL || $raum != NULL || $telefon != NULL || $termin != NULL || $status != NULL)
-	{
-		$query = $wpdb->get_results($wpdb->prepare("SELECT id FROM wp_sts_tickets WHERE problem = %s LIMIT 1", $problem));
-		foreach($query as $id)
-		{
+	$lastid = $wpdb->insert_id;
+
 			if($rechner != NULL)
 			{
-				$wpdb->query($wpdb->prepare("UPDATE wp_sts_tickets SET rechner=%s WHERE id=%d", $rechner, $id->id));
+				$wpdb->query($wpdb->prepare("UPDATE wp_sts_tickets SET rechner=%s WHERE id=%d", $rechner, $lastid));
 			}
 			if($raum != NULL)
 			{
-				$wpdb->query($wpdb->prepare("UPDATE wp_sts_tickets SET raum=%s WHERE id=%d", $raum, $id->id));
+				$wpdb->query($wpdb->prepare("UPDATE wp_sts_tickets SET raum=%s WHERE id=%d", $raum, $lastid));
 			}
 			if($telefon != NULL)
 			{
-				$wpdb->query($wpdb->prepare("UPDATE wp_sts_tickets SET telefon=%s WHERE id=%d", $telefon, $id->id));
+				$wpdb->query($wpdb->prepare("UPDATE wp_sts_tickets SET telefon=%s WHERE id=%d", $telefon, $lastid));
 			}
 			if($termin != NULL)
 			{
 				$time = strtotime($termin);
-				$wpdb->query($wpdb->prepare("UPDATE wp_sts_tickets SET datepicker=%s WHERE id=%d", $termin, $id->id));
+				$wpdb->query($wpdb->prepare("UPDATE wp_sts_tickets SET datepicker=%s WHERE id=%d", $termin, $lastid));
 			}
 			if($status != NULL)
 			{
-				$wpdb->query($wpdb->prepare("UPDATE wp_sts_tickets SET status='1' WHERE id=%d", $id->id));
+				$wpdb->query($wpdb->prepare("UPDATE wp_sts_tickets SET status='1' WHERE id=%d", $lastid));
 			}			
-		}
-	}
+		
 	echo '<p>' . _e('Your problem has been successfully submitted.', 'simple-support-ticket-system') . '</p>';
+	include_once(TS_DIR.'includes/create-link.php');
 	echo '<p><form onsubmit="back();return false;"><input class="button" value="';
 	_e('Back', 'simple-support-ticket-system');
 	echo '" type="submit"></input></form></p>';

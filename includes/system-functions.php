@@ -42,4 +42,11 @@ function COOKIE_callback() {
 }
 add_action( 'wp_ajax_nopriv_COOKIE', 'COOKIE_callback' );
 add_action( 'wp_ajax_COOKIE', 'COOKIE_callback' );
+
+function ANSWER_callback() {
+	include_once(TS_DIR.'includes/answer.php');
+	wp_die();
+}
+add_action( 'wp_ajax_nopriv_ANSWER', 'ANSWER_callback' );
+add_action( 'wp_ajax_ANSWER', 'ANSWER_callback' );
 ?>

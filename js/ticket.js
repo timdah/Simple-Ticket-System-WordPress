@@ -22,6 +22,7 @@ jQuery(document).ready(function() {
 	}
 	  
 });
+var bCheck = 0;
 
 // Lade den div-Bereich 'ajax' neu, 'action' wird beim Aufruf mit übergeben --> Buttons
 function allTickets(action) {
@@ -99,6 +100,10 @@ function stopInterval() {
 function update(id) {
 	var select = jQuery('#'+id).find('.select_2').val();
 	var text = jQuery('#'+id).find('.update_text').val();
+	if(select == 'antwort') {
+		answer(id, text);
+		return;
+	}
 	if(select == 'termin')
 	{
 		text = jQuery('#'+id).find('.form-control').val();
@@ -152,6 +157,7 @@ function update(id) {
 
 // Ticket übernehmen
 function take(id) {
+	buttonCheck(0);
 	var data = {
 	'action': 'UPDATE',
 	'id': id,
@@ -182,6 +188,8 @@ function take(id) {
 	.fail( function(xhr, textStatus, errorThrown) {
         alert(xhr.responseText);
     });
+	
+	console.log(bCheck);
 }
 
 // Ticket erledigt
@@ -258,10 +266,17 @@ function expand2(id) {
 	if(jQuery('#'+id+' .update').css('display') == 'none')
 	{
 		jQuery('#'+id+' .update').css('display', 'flex');
+		jQuery('#'+id+' .answers').css('display', 'table');
 		jQuery('#'+id+' .expand').css('transform', 'rotate(180deg)');
 	} else
 	{
+		if(jQuery('#'+id).height() > 800) {
+			jQuery('html, body').animate({
+				scrollTop: jQuery('#'+id).offset().top-20
+			}, 500);
+		}
 		jQuery('#'+id+' .update').css('display', 'none');
+		jQuery('#'+id+' .answers').css('display', 'none');
 		jQuery('#'+id+' .expand').css('transform', 'rotate(0deg)');
 	}
 }
@@ -291,7 +306,6 @@ function textarea(id) {
 }
 
 // automatische Aktuallisierung stoppen wenn in Textfeld
-var bCheck = 0;
 function buttonCheck(x) {
 	bCheck = x;
 }
@@ -389,4 +403,27 @@ function logout() {
 			jQuery('#ts_content').html(final_data);
 		});
 	});
+}
+
+// Antworten
+function answer(id, text) {
+		
+	var data = {
+	'action': 'ANSWER',
+	'id': id,
+	'text': text
+	};
+		
+	jQuery.post(ajax_object.ajax_url, data, function() {
+		var data2 = {
+		'action': 'AJAX',
+		'id': id,
+		'what': ''
+		};
+		jQuery.post(ajax_object.ajax_url, data2, function(response) {
+			var final_data = jQuery(response).find('.answers').html();
+			jQuery('#'+id).children('.answers').html(final_data);
+			textarea(id);
+		});
+	});	
 }

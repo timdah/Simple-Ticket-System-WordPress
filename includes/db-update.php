@@ -32,5 +32,30 @@ if($db_version == DB_VERSION) {
 		
 		$wpdb->query("UPDATE wp_sts_options SET ts_value = '103' WHERE ts_option = 'db_version'");
 	}
+	if($db_version < 104) {
+		$wpdb->query("INSERT INTO wp_sts_options (ts_option, ts_value) VALUES
+		('problem', 'Problem (Change in Settings)'),
+		('check_mail', '0'),
+		('mail_answer', NULL),
+		('mail_take', NULL),
+		('mail_done', NULL)");
+		
+		$wpdb->query("ALTER TABLE wp_sts_tickets 
+			MODIFY bemerkung VARCHAR(1000),
+			MODIFY loesung VARCHAR(1000)
+		");
+		
+		if ($wpdb->get_var("SHOW TABLES LIKE '{$wpdb->prefix}sts_answers'") != $wpdb->prefix . 'sts_answers'){
+			$wpdb->query("CREATE TABLE {$wpdb->prefix}sts_answers (
+			id INTEGER UNSIGNED NULL AUTO_INCREMENT PRIMARY KEY,
+			ticket_id INTEGER NOT NULL,
+			index_antwort INTEGER NOT NULL,
+			user VARCHAR(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+			antwort VARCHAR(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
+			);");
+		}
+		
+		$wpdb->query("UPDATE wp_sts_options SET ts_value = '104' WHERE ts_option = 'db_version'");
+	}
 }
 ?>

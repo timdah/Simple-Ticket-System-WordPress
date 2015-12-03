@@ -79,6 +79,34 @@
 	align-items: center;
 }
 
+.answers {
+	width: 100%;
+	margin: 0 !important;
+	box-sizing: border-box !important;
+	border-collapse: separate !important;
+	border-spacing: 0 !important;
+	padding: 0px 0px !important;
+	border-bottom: 1px solid rgba(0,0,0,0.1) !important;
+	color: black !important;
+	line-height: 1.5 !important;
+	display: none;
+}
+.answers * {
+	box-sizing: border-box !important;
+	width: 100% !important;
+}
+.answers td {
+	padding: 10px 10px !important;
+	border: none !important;
+	background: #eee !important;
+	border-bottom: 1px solid rgba(0,0,0,0.1) !important;
+	width: 100% !important;
+}
+
+.admin td {
+	background-color: rgba(255, 255, 255, 1.0) !important;
+}
+
 
 /* Thanks to css-spinners.com */
 @-moz-keyframes three-quarters-loader {

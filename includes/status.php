@@ -1,47 +1,43 @@
 <?php
 // Zugriff einschränken
-defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
+if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+	exit;
+}
 
-$mail = sanitize_text_field($_POST["mail"]);
-$what = sanitize_text_field($_POST["what"]);
-$anrede = sanitize_text_field($_POST["anrede"]);
-$name = sanitize_text_field($_POST["name"]);
+$what = $_POST["what"];
+if(isset($_POST["mail"])){$mail = $_POST["mail"];}
+if(isset($_POST["title"])){$title = $_POST["title"];}
+if(isset($_POST["text"])){$text = nl2br($_POST["text"]);}
 
-$headers   = array();
-$headers[] = "MIME-Version: 1.0";
-$headers[] = "Content-type: text/plain; charset=utf-8";
+// für HTML-E-Mails muss der 'Content-type'-Header gesetzt werden
+$header  = 'MIME-Version: 1.0' . "\r\n";
+$header .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
-$noreply = "\n\n--Diese Nachricht wurde automatisch generiert. Antworten an diese Adresse werden nicht entgegen genommen.--";
+$nachricht = '
+<html>
+<head>
+  <title>'. $title .'</title>
+</head>
+<body>
+  <p>'. $text .'</p>
+</body>
+</html>
+';
+
 
 if($what == 'take')
-{
-	$text = $anrede." ".$name." hat sich soeben Ihrem Problem angenommen.\n";
-	$text .= "Bei Veränderungen des Problems informieren Sie ihn bitte.\n\n";
-	$text .= "Mit freundlichen Grüßen\nIT-Koordination";
-	$text .= $noreply;
-	mail($mail, 'Ihr Ticket wird bearbeitet', $text, implode("\r\n",$headers));
+{	
+	mail($mail, $title, $nachricht, $header);
 }
 if($what == 'done')
 {
-	$text = "Ihr Problem wurde soeben behoben ";
-	$text .= "und ist nun bei uns im System als erledigt markiert.\n";
-	$text .= "Sollte dies nicht korrekt sein, melden Sie sich bitte bei ";
-	$text .= $anrede;
-	if($anrede == 'Herr'){$text .= "n";}
-	$text .= " ".$name;
-	$text .= ".\n\nMit freundlichen Grüßen\nIT-Koordination";
-	$text .= $noreply;
-	mail($mail, 'Ihr Problem ist behoben', $text, implode("\r\n",$headers));
+	mail($mail, $title, $nachricht, $header);
 }
-if($what == 'change')
+if($what == 'answer')
 {
-	$text = "Ihr Problem wurde an eine/n andere/n Mitarbeiter/in übergeben, ";
-	$text .= "bei Veränderungen des Problems informieren Sie nun bitte ";
-	$text .= $anrede;
-	if($anrede == 'Herr'){$text .= "n";}
-	$text .= " ".$name;
-	$text .= ".\n\nMit freundlichen Grüßen\nIT-Koordination";
-	$text .= $noreply;
-	mail($mail, 'Neuer Bearbeiter Ihres Problems', $text, implode("\r\n",$headers));
-}	
+	mail($mail, $title, $nachricht, $header);
+}
+if($what == 'test') {
+	mail($mail, 'Test', 'It works!');
+}
 ?>

@@ -8,20 +8,16 @@ $user = $_COOKIE["ts_username"];
 
 <?php
 $id = sanitize_text_field($_POST["id"]);
-$status = NULL;
-$query_stat = $wpdb->get_results($wpdb->prepare("SELECT status, mail FROM wp_sts_tickets WHERE id=%d",$id));
+$option = sanitize_text_field($_POST["option"]);
+$status = NULL; $mail = NULL; $title = NULL;
+$query_stat = $wpdb->get_results($wpdb->prepare("SELECT status, mail, title FROM wp_sts_tickets WHERE id=%d",$id));
 foreach($query_stat as $row)
 {
 	if($row->status === '1')
 	{
 		$status = '1';
-		$GLOBALS["mail"] = $row->mail;
-		$query_stat2 = $wpdb->get_results($wpdb->prepare("SELECT anrede,name FROM wp_sts_login WHERE username=%s",$user));
-		foreach($query_stat2 as $row2)
-		{
-			$GLOBALS["anrede"] = $row2->anrede;
-			$GLOBALS["name"] = $row2->name;
-		}
+		$mail = $row->mail;
+		$title = $row->title;
 	}
 }
 // Überprüfen ob übergeben wurde, was zu tun ist
@@ -31,34 +27,75 @@ if(isset($_POST["what"]))
 	// Eintragen, dass das Ticket bearbeitet wurde
 	if($what == 'done')
 	{
-		$stamp = time();
-		$zeit = date(get_option('date_format') . ', ' . get_option('time_format'));
-		
-		$query = $wpdb->query($wpdb->prepare("UPDATE wp_sts_tickets SET geloest = CASE WHEN bearbeiter = %s THEN '1' ELSE '0' END, ende = CASE WHEN bearbeiter = %s THEN %s ELSE '' END, ende_timestamp = %s WHERE id=%d",$user,$user,$zeit,$stamp,$id));
+		$check = $wpdb->get_results("SELECT geloest, bearbeiter FROM wp_sts_tickets WHERE id='$id'");		
+		foreach($check as $row)
+		{
+			if($row->geloest != '1' && $row->bearbeiter == $user)
+			{
+				$stamp = time();
+				$zeit = date(get_option('date_format') . ', ' . get_option('time_format'));
+				$query = $wpdb->query($wpdb->prepare("UPDATE wp_sts_tickets SET geloest = '1', ende = %s, ende_timestamp = %s WHERE id=%d",$zeit,$stamp,$id));
+				echo 'ja';
+				if($status == '1')
+				{
+					$url = TS_DIR_URL.'includes/status.php';
+					$text = $wpdb->get_var("SELECT ts_value FROM wp_sts_options WHERE ts_option = 'mail_done'");
+					$data = array('mail' => $mail, 'what' => 'done', 'title' => $title, 'text' => $text);
+					//open connection
+					$ch = curl_init();
+					//set the url, number of POST vars, POST data
+					curl_setopt($ch,CURLOPT_URL, $url);
+					curl_setopt($ch,CURLOPT_POST, 1);
+					curl_setopt($ch,CURLOPT_POSTFIELDS, $data);
+					curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
+					curl_setopt($ch, CURLOPT_TIMEOUT_MS, 1000);
+					$result = curl_exec($ch);
+					//close connection
+					curl_close($ch);
+				}
+			} else
+			{
+				echo 'nein';
+			}
+		}
 	}
 	// Das Ticket wird übernommen, wenn noch kein Bearbeiter eingetragen ist
 	else if($what == 'take')
 	{
-		$query = $wpdb->query($wpdb->prepare("UPDATE wp_sts_tickets SET bearbeiter = CASE WHEN bearbeiter = 'unbekannt' THEN %s ELSE bearbeiter END WHERE id=%d",$user,$id));
+		$check = $wpdb->get_results("SELECT bearbeiter FROM wp_sts_tickets WHERE id='$id'");		
+		foreach($check as $row)
+		{
+			if($row->bearbeiter == 'unbekannt')
+			{
+				$query = $wpdb->query($wpdb->prepare("UPDATE wp_sts_tickets SET bearbeiter = %s WHERE id=%d",$user,$id));
+				echo 'ja';
+				if($status == '1')
+				{
+					$url = TS_DIR_URL.'includes/status.php';
+					$text = $wpdb->get_var("SELECT ts_value FROM wp_sts_options WHERE ts_option = 'mail_take'");
+					$data = array('mail' => $mail, 'what' => 'take', 'title' => $title, 'text' => $text);
+					//open connection
+					$ch = curl_init();
+					//set the url, number of POST vars, POST data
+					curl_setopt($ch,CURLOPT_URL, $url);
+					curl_setopt($ch,CURLOPT_POST, 1);
+					curl_setopt($ch,CURLOPT_POSTFIELDS, $data);
+					curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
+					curl_setopt($ch, CURLOPT_TIMEOUT_MS, 1000);
+					$result = curl_exec($ch);
+					//close connection
+					curl_close($ch);
+				}
+			} else
+			{
+				echo 'nein';
+			}
+		}		
 	} 
 	// Ticket wird übernommen, wenn ein Benutzer eingetragen ist
 	else if($what == 'change')
 	{
 		$query = $wpdb->query($wpdb->prepare("UPDATE wp_sts_tickets SET bearbeiter = %s WHERE id=%d",$user,$id));
-		if($status == '1')
-		{
-			//set Post variables
-			$url = TS_DIR_URL.'includes/status.php';
-			$data = array('mail' => $mail, 'what' => 'change', 'anrede' => $anrede, 'name' => $name);
-			//open connection
-			$ch = curl_init();
-			//set the url, number of POST vars, POST data
-			curl_setopt($ch,CURLOPT_URL, $url);
-			curl_setopt($ch,CURLOPT_POSTFIELDS, $data);
-			$result = curl_exec($ch);
-			//close connection
-			curl_close($ch);
-		}
 	}
 	// Das Ticket zurück holen
 	else if($what == 'undo')
@@ -66,9 +103,8 @@ if(isset($_POST["what"]))
 		$query = $wpdb->query("UPDATE wp_sts_tickets SET geloest = '0' WHERE id='$id'");
 	} 	
 	// Abfrage des Texts für Bearbeitugnsfeld
-	else if($what == 'load')
+	else if($what == 'load' && $option != 'antwort')
 	{
-		$option = sanitize_text_field($_POST["option"]);
 		$query = $wpdb->get_results("SELECT $option FROM wp_sts_tickets WHERE id='$id'");
 	}
 } 
@@ -76,7 +112,7 @@ if(isset($_POST["what"]))
 else if(isset($_POST["text"]))
 {
 	$select = sanitize_text_field($_POST["select"]);
-	$text = sanitize_text_field($_POST["text"]);
+	$text = stripslashes(implode( "\n", array_map( 'sanitize_text_field', explode( "\n", $_POST['text'] ) ) ) );
 	if($select == 'termin')
 	{
 		$time = strtotime($text);
@@ -86,22 +122,21 @@ else if(isset($_POST["text"]))
 		$query = $wpdb->query($wpdb->prepare("UPDATE wp_sts_tickets SET $select=%s WHERE id='$id'", $text));	
 	}
 }
-// Ausführen der SQL-Befehle
-//mysql_query($query);
+
 
 if(isset($_POST["what"]))
 {
-	if($what == 'load')
+	if($what == 'load' && $option != 'antwort')
 	{
 		foreach($query as $row)
 		{
 			// Aktuallisierung des Bearbeitungsfelds
-			if($option != 'termin' && $option != 'bearbeiter')
+			if($option != 'termin' && $option != 'bearbeiter' && $option != 'antwort')
 			{
 			?>
-				<textarea maxLength="500" class="update_text" type="text" required="required"><?php echo esc_textarea($row->$option); ?></textarea>
+				<textarea maxLength="1000" class="update_text" type="text" required="required"><?php echo esc_textarea($row->$option); ?></textarea>
 			<?php
-			} 
+			}
 			// Ändern des Textfelds wenn Termin & Aktivierung des Datepickers
 			else if($option == 'termin') 
 			{
@@ -138,65 +173,10 @@ if(isset($_POST["what"]))
 			}
 		}
 	}
-	
-	// Überprüfen, ob das Ticket übernommen werden kann
-	if($what == 'take')
-	{
-		$check = $wpdb->get_results("SELECT bearbeiter FROM wp_sts_tickets WHERE id='$id'");		
-		foreach($check as $row)
-		{
-			if($row->bearbeiter == $user)
-			{
-				echo 'ja';
-				if($status == '1')
-				{
-					//set Post variables
-					$url = TS_DIR_URL.'includes/status.php';
-					$data = array('mail' => $mail, 'what' => 'take', 'anrede' => $anrede, 'name' => $name);
-					//open connection
-					$ch = curl_init();
-					//set the url, number of POST vars, POST data
-					curl_setopt($ch,CURLOPT_URL, $url);
-					curl_setopt($ch,CURLOPT_POSTFIELDS, $data);
-					$result = curl_exec($ch);
-					//close connection
-					curl_close($ch);
-				}
-			} else
-			{
-				echo 'nein';
-			}
-		}
-	}
-	
-	// Überprüfen, ob das Ticket nicht von anderen Personen übernommen wurde in der Zwischenzeit
-	if($what == 'done')
-	{
-		$check = $wpdb->get_results("SELECT geloest FROM wp_sts_tickets WHERE id='$id'");		
-		foreach($check as $row)
-		{
-			if($row->geloest == '1')
-			{
-				echo 'ja';
-				if($status == '1')
-				{
-					//set Post variables
-					$url = TS_DIR_URL.'includes/status.php';
-					$data = array('mail' => $mail, 'what' => 'done', 'anrede' => $anrede, 'name' => $name);
-					//open connection
-					$ch = curl_init();
-					//set the url, number of POST vars, POST data
-					curl_setopt($ch,CURLOPT_URL, $url);
-					curl_setopt($ch,CURLOPT_POSTFIELDS, $data);
-					$result = curl_exec($ch);
-					//close connection
-					curl_close($ch);
-				}
-			} else
-			{
-				echo 'nein';
-			}
-		}
+	else if($option == 'antwort') {
+		?>
+			<textarea maxLength="1000" class="update_text" type="text" required="required"></textarea>
+		<?php		
 	}
 }
 ?>

@@ -163,7 +163,32 @@ foreach($ticket as $row)
 			</tr>
 			<?php } ?>
 		</table>
-		<?php if($row->bearbeiter == $user || $row->bearbeiter == 'unbekannt' || $_COOKIE["ts_admin"] == 1) { ?>
+		<?php if($row->bearbeiter == $user || $_COOKIE["ts_admin"] == 1) { ?>
+		<table class="answers">
+			<?php
+			$answers = $wpdb->get_results($wpdb->prepare("SELECT antwort, user FROM wp_sts_answers WHERE ticket_id = %d ORDER BY index_antwort ASC", $row->id));
+			foreach($answers as $query) {
+				?>
+				<tr <?php if($query->user != NULL) { ?> class="admin" <?php } ?>>
+					<td>
+						<b><i>
+						<?php if($query->user != NULL) {
+								echo '<span style="color:#e1550a">' . esc_html($query->user) . '</span> ';
+							  } else {
+								echo esc_html($row->name) . ' ';
+							  }
+							  _e('says', 'simple-support-ticket-system');
+						?>:</i></b><br>
+						<?php echo nl2br(esc_html($query->antwort)); ?>
+					</td>
+				</tr>
+				<?php
+			}
+			?>
+		</table>
+		<?php 
+		} 
+		if($row->bearbeiter == $user || $row->bearbeiter == 'unbekannt' || $_COOKIE["ts_admin"] == 1) { ?>
 		<div class="update">
 		<!-- Laden der Texte in Textfeld -->
 		<script>textarea('<?php echo esc_html($row->id); ?>');</script>
@@ -171,20 +196,21 @@ foreach($ticket as $row)
 				<table style="width: 100%">
 					<tr style="width: 100%">
 						<td class="textarea" rowspan="2">
-							<textarea maxLength="500" class="update_text" type="text" required="required"><?php echo esc_textarea($row->bemerkung); ?></textarea>
+							<textarea maxLength="1000" class="update_text" type="text" required="required"></textarea>
 						</td>
 						<td>
 							<select class="select_2">
 								<?php if($row->bearbeiter != 'unbekannt') { ?>
 									<option value="loesung"><?php _e('Solution', 'simple-support-ticket-system'); ?></option>
+									<option selected value="antwort"><?php _e('Answer', 'simple-support-ticket-system'); ?></option>
 								<?php } ?>
-								<option selected value="bemerkung"><?php _e('Note', 'simple-support-ticket-system'); ?></option>
+								<option value="bemerkung"><?php _e('Note', 'simple-support-ticket-system'); ?></option>
 								<option value="problem"><?php _e('Problem', 'simple-support-ticket-system'); ?></option>
 								<option value="termin"><?php _e('Appointment', 'simple-support-ticket-system'); ?></option>
 								<?php if($_COOKIE["ts_admin"] == 1) { ?>
 									<option value="bearbeiter"><?php _e('Issuer', 'simple-support-ticket-system'); ?></option>
 								<?php } ?>
-							</select>	
+							</select>
 						</td>
 					</tr>
 					<tr>

@@ -30,4 +30,30 @@ function GENERAL_LOAD_callback() {
 	wp_die();
 }
 add_action( 'wp_ajax_GENERAL_LOAD', 'GENERAL_LOAD_callback' );
+
+function MAIL_ACDE_callback() {
+	include_once(TS_DIR.'includes/admin/activate-mail.php');
+	wp_die();
+}
+add_action( 'wp_ajax_MAIL_ACDE', 'MAIL_ACDE_callback' );
+
+function TEST_MAIL_callback() {
+	$current_user = wp_get_current_user();
+	$mail = $current_user = $current_user->user_email;
+	$url = TS_DIR_URL.'includes/status.php';
+	$data = array('what' => 'test', 'mail' => $mail);
+	//open connection
+	$ch = curl_init();
+	//set the url, number of POST vars, POST data
+	curl_setopt($ch,CURLOPT_URL, $url);
+	curl_setopt($ch,CURLOPT_POST, 1);
+	curl_setopt($ch,CURLOPT_POSTFIELDS, $data);
+	curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
+	curl_setopt($ch, CURLOPT_TIMEOUT_MS, 1000);
+	$result = curl_exec($ch);
+	//close connection
+	curl_close($ch);
+}
+add_action( 'wp_ajax_TEST_MAIL', 'TEST_MAIL_callback' );
+
 ?>

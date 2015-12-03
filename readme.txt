@@ -1,9 +1,10 @@
 === Plugin Name ===
 Contributors: en0x
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=YA24QZ2SP4NP6
 Tags: ticket, simple, system, support, plugin, request, help, desk
 Requires at least: 3.0.1
-Tested up to: 4.3
-Stable tag: 1.2.2
+Tested up to: 4.3.1
+Stable tag: 1.3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -23,7 +24,10 @@ You can use it as a help desk for co-workers in your Intranet or as a contact fo
 
 = Key features =
 
+*	Completely for the Front-End.
 *   Independet Login from Wordpress, or when you are logged in into Wordpress, then you will be automatically logged in.
+*	E-Mail Notification
+*	To every ticket you get a link so you can check your ticket and also write with the support like a chat.
 *   Normal users can take, edit their own and adopt tickets. They also can add appointments.
 *	Admin users can edit all tickets and allocate tickets to other users.
 *   You can add notes and solutions to every ticket.
@@ -54,11 +58,24 @@ Not yet!
 3. ticket in editing mode
 4. ticket with appointment
 5. filter for tickets
-6. backend page
+6. General Settings
+7. User Administration
 
 
 == Changelog ==
+= 1.3.1 =
+* Fixed unintentional backslashes in text
+= 1.3 =
+* BIG UPDATE
+* Email notification for those who create the ticket. They will be informed when their ticket was "taken", when it's "done" and when there is a new answer.
+* You can consult and answer your ticket under an generated link.
+* Following you can answer when you work on tickets, so it's kind like a chat.
+* Problem Field is renameble now.
+* "Report problem" was changed to "Submit".
 = 1.2.2 =
+* IMPORTANT
+* When you updated to 1.2.2 before 19.11.2015 (UTC+1 13:00h) and your wordpress backend doesn't load anymore please redownload fixed v1.2.2
+* 
 * Only whitespace in necessary fields isn't allowed anymore.
 * Database Update only loads when user is admin.
 = 1.2.1 =
