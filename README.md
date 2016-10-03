@@ -56,4 +56,4 @@ The plugin currently comes with the following translations:
 English, German
 
 ## Demo
-You can test the plugin [here](http://wp12405556.server-he.de/)
+You can test the plugin [here](http://demo.en0x.de)

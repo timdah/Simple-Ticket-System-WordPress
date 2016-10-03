@@ -47,19 +47,20 @@ if(isset($_POST["what"]))
 if(isset($_POST["select"]))
 {
 	$select = sanitize_text_field($_POST["select"]);
-	$search = sanitize_text_field($_POST["search"]);
+	$select = esc_sql($select);
+	$search = '%' . sanitize_text_field($_POST["search"]) . '%';
 	$order = sanitize_text_field($_POST["order"]);
 	$offset = 0;
 	if(isset($_POST["offset"])){$offset = sanitize_text_field($_POST["offset"]);}
 	$ticket = $wpdb->get_results($wpdb->prepare(
-				"SELECT * FROM wp_sts_tickets WHERE %s LIKE %s ORDER BY id $order LIMIT 10 OFFSET %d",
-				$select, $search, $offset)
+				"SELECT * FROM wp_sts_tickets WHERE `{$select}` LIKE %s ORDER BY id $order LIMIT 10 OFFSET %d",
+				$search, $offset)
 			  );
 	if($select == 'termin')
 	{
 		$ticket = $wpdb->get_results($wpdb->prepare(
-					"SELECT * FROM wp_sts_tickets WHERE %s IS NOT NULL AND %s != '' AND geloest='0' ORDER BY termin_timestamp ASC LIMIT 10 OFFSET %d",
-					$select, $select, $offset)
+					"SELECT * FROM wp_sts_tickets WHERE `termin` IS NOT NULL AND `termin` != '' AND geloest='0' ORDER BY termin_timestamp ASC LIMIT 10 OFFSET %d",
+					$offset)
 				  );
 	}
 	if($select == 'geloest')
