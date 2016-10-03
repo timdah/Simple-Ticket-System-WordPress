@@ -3,12 +3,12 @@ Contributors: en0x
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=YA24QZ2SP4NP6
 Tags: ticket, simple, system, support, plugin, request, help, desk
 Requires at least: 3.0.1
-Tested up to: 4.3.1
-Stable tag: 1.3.1
+Tested up to: 4.6.1
+Stable tag: 1.3.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Simple, fast and responsive ticket system to receive and store Problems of Customers or Visitors, with a great search function.
+Simple, fast and responsive ticket system for the Front-End to receive and store Problems of Customers or Visitors, with a great search function.
 
 == Description ==
 The idea was it to create a Ticket System completely for the Front-End, and that's the result!
@@ -63,6 +63,8 @@ Not yet!
 
 
 == Changelog ==
+= 1.3.2 =
+* Fixed search function
 = 1.3.1 =
 * Fixed unintentional backslashes in text
 = 1.3 =
