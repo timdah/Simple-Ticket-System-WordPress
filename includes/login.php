@@ -9,7 +9,7 @@ $username = sanitize_text_field($_POST["username"]);
 $passwort = md5(sanitize_text_field($_POST["passwort"]));
 
 //Benutzername & Passwort überprüfen
-$abfrage = "SELECT username, passwort, admin FROM wp_sts_login WHERE username = %s LIMIT 1";
+$abfrage = "SELECT username, passwort, admin FROM {$wpdb->prefix}sts_login WHERE username = %s LIMIT 1";
 $row = $wpdb->get_row($wpdb->prepare($abfrage, $username));
 
 //Wenn Passwort korrekt

@@ -13,6 +13,10 @@
 	justify-content: center;
 }
 
+#user_guide p {
+	font-size: larger;
+}
+
 #add_form {
 	width: calc(100% - 20px);
 	max-width: 800px;

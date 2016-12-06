@@ -17,7 +17,7 @@ $answer = implode( "\n", array_map( 'sanitize_text_field', explode( "\n", $_POST
 
 
 
-$wpdb->query($wpdb->prepare("UPDATE wp_sts_options SET ts_value = CASE 
+$wpdb->query($wpdb->prepare("UPDATE {$wpdb->prefix}sts_options SET ts_value = CASE 
     WHEN ts_option = 'problem' THEN %s
 	WHEN ts_option = 'opt_field_1' THEN %s
     WHEN ts_option = 'opt_field_2' THEN %s

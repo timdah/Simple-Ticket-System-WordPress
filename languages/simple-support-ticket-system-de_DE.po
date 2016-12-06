@@ -5,15 +5,15 @@ msgstr ""
 "Project-Id-Version: Support Ticket System 1.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/simple-support-"
 "ticket-system\n"
-"POT-Creation-Date: 2015-11-23 22:46+0100\n"
-"PO-Revision-Date: 2015-11-23 22:53+0100\n"
+"POT-Creation-Date: 2016-10-16 13:25+0200\n"
+"PO-Revision-Date: 2016-10-16 13:32+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.6\n"
+"X-Generator: Poedit 1.8.10\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: includes/admin/add-user.php:17
@@ -46,60 +46,103 @@ msgstr "Lass JavScript machen wozu es da ist!"
 msgid "General Options"
 msgstr "Allgemeine Einstellungen"
 
-#: includes/admin/options-general.php:20
+#: includes/admin/options-general.php:21
+msgid "User Guide"
+msgstr "Benutzerhandbuch"
+
+#: includes/admin/options-general.php:22
+msgid ""
+"First of all you have to create two new Pages or Posts. One for the ticket "
+"submition and one for the system to manage the tickets.\n"
+"\t\t\t\tNow, give them the titles you want and set the following content:"
+msgstr ""
+"Zuerst müssen zwei neue Seiten oder Beiträge erstellt werden. Diese sind "
+"notwendig für die Erstellung sowie Bearbeitung der Tickets. Geben Sie diesen "
+"Seiten nun den gewünschten Titel und fügen folgenden Inhalt ein:"
+
+#: includes/admin/options-general.php:25
+msgid "on the page for the ticket submition"
+msgstr "auf der Seite, um ein Ticket zu erstellen"
+
+#: includes/admin/options-general.php:26
+msgid "on the page for the ticket system"
+msgstr "auf der Seite für das Ticketsystem"
+
+#: includes/admin/options-general.php:27
+msgid ""
+"That's all! To manage tickets you have to be logged in into Wordpress or "
+"with accounts you can create under 'Support System -> Users'"
+msgstr ""
+"Das ist schon alles! Um Tickets nun zu verwalten müssen Sie entweder bei "
+"Wordpress im Backend eingeloggt sein, oder Sie erstellen seperate Account "
+"unter 'Support System -> Benutzer'."
+
+#: includes/admin/options-general.php:28
+msgid "Hover over buttons to get a short description of their function."
+msgstr "Gehen Sie mit der Maus über Buttons, um deren Funktion zu erfahren."
+
+#: includes/admin/options-general.php:29
+msgid ""
+"If there are other things unclear, feel free to ask me in the support "
+"section :)"
+msgstr ""
+"Wenn es unklare Dinge gibt, können Sie mich gerne im Support Bereich des "
+"Plugins fragen :)"
+
+#: includes/admin/options-general.php:32
 msgid "Field Names"
 msgstr "Feld Namen"
 
-#: includes/admin/options-general.php:24
+#: includes/admin/options-general.php:36
 msgid "Title Problem Field:"
 msgstr "Title Problem Feld:"
 
-#: includes/admin/options-general.php:32
+#: includes/admin/options-general.php:44
 msgid "Title Optional Field 1:"
 msgstr "Titel Optionales Feld 1:"
 
-#: includes/admin/options-general.php:40
+#: includes/admin/options-general.php:52
 msgid "Title Optional Field 2:"
 msgstr "Titel Optionales Feld 2:"
 
-#: includes/admin/options-general.php:48
+#: includes/admin/options-general.php:60
 msgid "Title Optional Field 3:"
 msgstr "Titel Optionales Feld 3:"
 
-#: includes/admin/options-general.php:56
+#: includes/admin/options-general.php:68
 msgid "Title Datepicker Field:"
 msgstr "Titel Datepicker Feld:"
 
-#: includes/admin/options-general.php:63
+#: includes/admin/options-general.php:75
 msgid "An empty Title will hide this Field in the Submit-Form"
 msgstr ""
 "Eine leeres Eingabefeld führt dazu, dass dieses Feld nicht mehr angezeigt "
 "wird im Formular."
 
-#: includes/admin/options-general.php:66
+#: includes/admin/options-general.php:78
 msgid "E-Mail Notification"
 msgstr "E-Mail Benachrichtigung"
 
-#: includes/admin/options-general.php:67
+#: includes/admin/options-general.php:79
 msgid ""
 "This function only works, if your server has a correct mail configuration"
 msgstr ""
 "Diese Funktion funktioniert nur, wenn Ihr Server die richtige Mail-"
 "Konfiguration hat"
 
-#: includes/admin/options-general.php:74
+#: includes/admin/options-general.php:86
 msgid "Activate"
 msgstr "﻿Aktivieren"
 
-#: includes/admin/options-general.php:78
+#: includes/admin/options-general.php:90
 msgid "Deactivate"
 msgstr "Deaktivieren"
 
-#: includes/admin/options-general.php:82
+#: includes/admin/options-general.php:94
 msgid "Test Server *"
 msgstr "Servertest"
 
-#: includes/admin/options-general.php:83
+#: includes/admin/options-general.php:95
 msgid ""
 "* Check your server by sending a Test-Mail to your mail address of this "
 "wordpress account"
@@ -107,19 +150,19 @@ msgstr ""
 "* Überprüfen Sie Ihren Server, indem Sie eine Test-Mail an die Mailadresse "
 "dieses Wordpress-Kontos schicken"
 
-#: includes/admin/options-general.php:90
+#: includes/admin/options-general.php:102
 msgid "Content of mail when ticket was taken:"
 msgstr "Inhalt der Mail, wenn das Ticket übernommen wurde:"
 
-#: includes/admin/options-general.php:94
+#: includes/admin/options-general.php:106
 msgid "Content of mail when ticket is done:"
 msgstr "Inhalt der Mail, wenn das Ticket erledigt ist:"
 
-#: includes/admin/options-general.php:98
+#: includes/admin/options-general.php:110
 msgid "Content of mail after a new answer:"
 msgstr "Inhalt der Mail, wenn eine neue Antwort vorliegt:"
 
-#: includes/admin/options-general.php:106
+#: includes/admin/options-general.php:118
 msgid "Save Settings"
 msgstr "Einstellungen speichern"
 
@@ -167,78 +210,78 @@ msgstr "Benutzer hinzufügen"
 msgid "Delete"
 msgstr "Löschen"
 
-#: includes/ajax.php:155 includes/ajax.php:207 includes/system.php:155
+#: includes/ajax.php:156 includes/ajax.php:208 includes/system.php:155
 #: includes/system.php:199
 msgid "Note"
 msgstr "Notiz"
 
-#: includes/ajax.php:161 includes/ajax.php:204 includes/system.php:52
+#: includes/ajax.php:162 includes/ajax.php:205 includes/system.php:52
 #: includes/system.php:161 includes/system.php:198
 msgid "Solution"
 msgstr "Lösung"
 
-#: includes/ajax.php:180 includes/show-ticket.php:113 includes/system.php:179
+#: includes/ajax.php:181 includes/show-ticket.php:113 includes/system.php:179
 msgid "says"
 msgstr "sagt"
 
-#: includes/ajax.php:205 includes/show-ticket.php:133 includes/system.php:200
+#: includes/ajax.php:206 includes/show-ticket.php:133 includes/system.php:200
 msgid "Answer"
 msgstr "Antworten"
 
-#: includes/ajax.php:208 includes/show-ticket.php:134 includes/system.php:54
+#: includes/ajax.php:209 includes/show-ticket.php:134 includes/system.php:54
 #: includes/system.php:201
 msgid "Problem"
 msgstr "Problem"
 
-#: includes/ajax.php:209 includes/system.php:55 includes/system.php:202
+#: includes/ajax.php:210 includes/system.php:55 includes/system.php:202
 msgid "Appointment"
 msgstr "Termin"
 
-#: includes/ajax.php:211 includes/system.php:49 includes/system.php:204
+#: includes/ajax.php:212 includes/system.php:49 includes/system.php:204
 msgid "Issuer"
 msgstr "Bearbeiter"
 
-#: includes/ajax.php:218 includes/system.php:211
+#: includes/ajax.php:219 includes/system.php:211
 msgid "Insert"
 msgstr "Einfügen"
 
-#: includes/ajax.php:230 includes/system.php:217
+#: includes/ajax.php:231 includes/system.php:217
 msgid "Finish this ticket"
 msgstr "Das Ticket ist erledigt"
 
-#: includes/ajax.php:237
+#: includes/ajax.php:238
 msgid "Take this ticket"
 msgstr "Dieses Ticket nehmen"
 
-#: includes/ajax.php:244
+#: includes/ajax.php:245
 msgid "Adopt this ticket"
 msgstr "Dieses Ticket übernehmen"
 
-#: includes/ajax.php:251
+#: includes/ajax.php:252
 msgid "Get this ticket back"
 msgstr "Dieses Ticket zurück holen"
 
-#: includes/ajax.php:270
+#: includes/ajax.php:271
 msgid "done by"
 msgstr "erledigt von"
 
-#: includes/ajax.php:280
+#: includes/ajax.php:281
 msgid "under examination by"
 msgstr "in Bearbeitung von"
 
-#: includes/ajax.php:289 includes/system.php:234
+#: includes/ajax.php:290 includes/system.php:234
 msgid "overdue"
 msgstr "überfällig"
 
-#: includes/ajax.php:298 includes/system.php:226
+#: includes/ajax.php:299 includes/system.php:226
 msgid "today"
 msgstr "heute"
 
-#: includes/ajax.php:312 includes/system.php:247
+#: includes/ajax.php:313 includes/system.php:247
 msgid "TOMORROW"
 msgstr "MORGEN"
 
-#: includes/ajax.php:314 includes/system.php:249
+#: includes/ajax.php:315 includes/system.php:249
 msgid "Appointment in %s days"
 msgstr "Termin in %s Tagen"
 

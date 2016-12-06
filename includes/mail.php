@@ -35,7 +35,7 @@ if(isset($_POST["status"]) && sanitize_text_field($_POST["status"]) == 'yes'){$s
 $zeit = date(get_option('date_format') . ', ' . get_option('time_format'));
 
 // Neues Ticket in die Datenbank eintragen
-$eintragen = $wpdb->query($wpdb->prepare("INSERT INTO wp_sts_tickets (name,mail,title,problem,zeit) VALUES (%s, %s, %s, %s, %s)", $absendername, $absendermail, $title, $problem, $zeit));
+$eintragen = $wpdb->query($wpdb->prepare("INSERT INTO {$wpdb->prefix}sts_tickets (name,mail,title,problem,zeit) VALUES (%s, %s, %s, %s, %s)", $absendername, $absendermail, $title, $problem, $zeit));
 
 if($eintragen == true)
 {
@@ -43,24 +43,24 @@ if($eintragen == true)
 
 			if($rechner != NULL)
 			{
-				$wpdb->query($wpdb->prepare("UPDATE wp_sts_tickets SET rechner=%s WHERE id=%d", $rechner, $lastid));
+				$wpdb->query($wpdb->prepare("UPDATE {$wpdb->prefix}sts_tickets SET rechner=%s WHERE id=%d", $rechner, $lastid));
 			}
 			if($raum != NULL)
 			{
-				$wpdb->query($wpdb->prepare("UPDATE wp_sts_tickets SET raum=%s WHERE id=%d", $raum, $lastid));
+				$wpdb->query($wpdb->prepare("UPDATE {$wpdb->prefix}sts_tickets SET raum=%s WHERE id=%d", $raum, $lastid));
 			}
 			if($telefon != NULL)
 			{
-				$wpdb->query($wpdb->prepare("UPDATE wp_sts_tickets SET telefon=%s WHERE id=%d", $telefon, $lastid));
+				$wpdb->query($wpdb->prepare("UPDATE {$wpdb->prefix}sts_tickets SET telefon=%s WHERE id=%d", $telefon, $lastid));
 			}
 			if($termin != NULL)
 			{
 				$time = strtotime($termin);
-				$wpdb->query($wpdb->prepare("UPDATE wp_sts_tickets SET datepicker=%s WHERE id=%d", $termin, $lastid));
+				$wpdb->query($wpdb->prepare("UPDATE {$wpdb->prefix}sts_tickets SET datepicker=%s WHERE id=%d", $termin, $lastid));
 			}
 			if($status != NULL)
 			{
-				$wpdb->query($wpdb->prepare("UPDATE wp_sts_tickets SET status='1' WHERE id=%d", $lastid));
+				$wpdb->query($wpdb->prepare("UPDATE {$wpdb->prefix}sts_tickets SET status='1' WHERE id=%d", $lastid));
 			}			
 		
 	echo '<p>' . _e('Your problem has been successfully submitted.', 'simple-support-ticket-system') . '</p>';

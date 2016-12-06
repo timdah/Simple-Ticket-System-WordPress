@@ -37,7 +37,7 @@ global $wpdb;
 	<div id="ajax_users">
 		<table id="ts_users">
 	<?php
-		$abfrage = $wpdb->get_results("SELECT id,username,name,admin FROM wp_sts_login");
+		$abfrage = $wpdb->get_results("SELECT id,username,name,admin FROM {$wpdb->prefix}sts_login");
 		foreach($abfrage as $row) {
 	?>  	<tr>
 				<td><?php echo esc_html($row->name); ?> (<?php echo esc_html($row->username); ?>)</td>

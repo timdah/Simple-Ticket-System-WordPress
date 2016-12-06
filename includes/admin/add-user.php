@@ -21,11 +21,11 @@ if($passwort != $passwort2 OR $username == "" OR $passwort == "" OR $name == "" 
     exit;
     }
 
-$menge = $wpdb->get_var($wpdb->prepare("SELECT id FROM wp_sts_login WHERE username = %s", $username));
+$menge = $wpdb->get_var($wpdb->prepare("SELECT id FROM {$wpdb->prefix}sts_login WHERE username = %s", $username));
 
 if($menge == 0)
     {
-    $eintrag = $wpdb->query($wpdb->prepare("INSERT INTO wp_sts_login (username, passwort, mail, anrede, name, admin) VALUES (%s, %s, %s, %s, %s, %d)", $username, $passwort, $mail, $anrede, $name, $admin));
+    $eintrag = $wpdb->query($wpdb->prepare("INSERT INTO {$wpdb->prefix}sts_login (username, passwort, mail, anrede, name, admin) VALUES (%s, %s, %s, %s, %s, %d)", $username, $passwort, $mail, $anrede, $name, $admin));
 
     if($eintrag == true)
         {

@@ -4,20 +4,32 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 // Um $wpdb nutzen zu können
 global $wpdb;
 
-$prob = $wpdb->get_var("SELECT ts_value FROM wp_sts_options WHERE ts_option = 'problem'");
-$opt1 = $wpdb->get_var("SELECT ts_value FROM wp_sts_options WHERE ts_option = 'opt_field_1'");
-$opt2 = $wpdb->get_var("SELECT ts_value FROM wp_sts_options WHERE ts_option = 'opt_field_2'");
-$opt3 = $wpdb->get_var("SELECT ts_value FROM wp_sts_options WHERE ts_option = 'opt_field_3'");
-$datepicker = $wpdb->get_var("SELECT ts_value FROM wp_sts_options WHERE ts_option = 'datepicker'");
-$take = $wpdb->get_var("SELECT ts_value FROM wp_sts_options WHERE ts_option = 'mail_take'");
-$done = $wpdb->get_var("SELECT ts_value FROM wp_sts_options WHERE ts_option = 'mail_done'");
-$answer = $wpdb->get_var("SELECT ts_value FROM wp_sts_options WHERE ts_option = 'mail_answer'");
+$prob = $wpdb->get_var("SELECT ts_value FROM {$wpdb->prefix}sts_options WHERE ts_option = 'problem'");
+$opt1 = $wpdb->get_var("SELECT ts_value FROM {$wpdb->prefix}sts_options WHERE ts_option = 'opt_field_1'");
+$opt2 = $wpdb->get_var("SELECT ts_value FROM {$wpdb->prefix}sts_options WHERE ts_option = 'opt_field_2'");
+$opt3 = $wpdb->get_var("SELECT ts_value FROM {$wpdb->prefix}sts_options WHERE ts_option = 'opt_field_3'");
+$datepicker = $wpdb->get_var("SELECT ts_value FROM {$wpdb->prefix}sts_options WHERE ts_option = 'datepicker'");
+$take = $wpdb->get_var("SELECT ts_value FROM {$wpdb->prefix}sts_options WHERE ts_option = 'mail_take'");
+$done = $wpdb->get_var("SELECT ts_value FROM {$wpdb->prefix}sts_options WHERE ts_option = 'mail_done'");
+$answer = $wpdb->get_var("SELECT ts_value FROM {$wpdb->prefix}sts_options WHERE ts_option = 'mail_answer'");
 ?>
 <h1 id="ts_head"><?php _e('General Options', 'simple-support-ticket-system'); ?></h1>
 <div id="ts_load"><div class="three-quarters-loader"></div></div>
 <div id="ts_content">
 	<form id="add_form" onsubmit="addChanges();return false;">
-		<h1><?php _e('Field Names', 'simple-support-ticket-system'); ?></h1>
+		<div id="user_guide">
+			<h1><?php _e('User Guide', 'simple-support-ticket-system'); ?></h1>
+			<p><?php _e('First of all you have to create two new Pages or Posts. One for the ticket submition and one for the system to manage the tickets.
+				Now, give them the titles you want and set the following content:', 'simple-support-ticket-system'); ?>
+			</p>
+			<p style="padding-left: 20px"><b>[ts_form] </b><?php _e('on the page for the ticket submition', 'simple-support-ticket-system'); ?></p>
+			<p style="padding-left: 20px"><b>[ts_tickets] </b><?php _e('on the page for the ticket system', 'simple-support-ticket-system'); ?></p>
+			<p><?php _e("That's all! To manage tickets you have to be logged in into Wordpress or with accounts you can create under 'Support System -> Users'", 'simple-support-ticket-system'); ?></p>
+			<p><?php _e('Hover over buttons to get a short description of their function.', 'simple-support-ticket-system'); ?></p>
+			<p><?php _e('If there are other things unclear, feel free to ask me in the support section :)', 'simple-support-ticket-system'); ?></p>
+		</div>
+		<hr>
+		<h1 style="margin-top: 50px"><?php _e('Field Names', 'simple-support-ticket-system'); ?></h1>
 		<table>
 			<tr>
 				<td>
@@ -68,7 +80,7 @@ $answer = $wpdb->get_var("SELECT ts_value FROM wp_sts_options WHERE ts_option = 
 			<div id="mail_enable">
 				<p>
 				<?php
-				$check = $wpdb->get_var("SELECT ts_value FROM wp_sts_options WHERE ts_option = 'check_mail'");
+				$check = $wpdb->get_var("SELECT ts_value FROM {$wpdb->prefix}sts_options WHERE ts_option = 'check_mail'");
 				if($check == 0) {
 				?>
 					<button type="button" id="change_mail" onclick="activeDeactive()" class="button button-primary"><?php _e('Activate', 'simple-support-ticket-system'); ?></button>

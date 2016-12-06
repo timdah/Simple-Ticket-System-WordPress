@@ -41,6 +41,6 @@ if ($wpdb->get_var("SHOW TABLES LIKE '{$wpdb->prefix}sts_options'") != $wpdb->pr
 	ts_value VARCHAR(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
 	);");
 	
-	$wpdb->query("INSERT INTO wp_sts_options (ts_option, ts_value) VALUES ('db_version', '100')");
+	$wpdb->query("INSERT INTO {$wpdb->prefix}sts_options (ts_option, ts_value) VALUES ('db_version', '100')");
 }
 ?>

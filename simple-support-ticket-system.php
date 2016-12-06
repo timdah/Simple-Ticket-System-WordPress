@@ -1,10 +1,10 @@
 <?php
 /*
 Plugin Name: Support Ticket System
-Plugin URI: http://en00x.github.io/Simple-Ticket-System-WordPress/
+Plugin URI: wordpress.org/plugins/simple-support-ticket-system/
 Author: Tim Dahlmanns
 Description: Simple and fast ticket system to receive and store Problems of Customers or Visitors, with a great search function.
-Version: 1.3.1
+Version: 1.3.4
 Domain Path: /languages
 Text Domain: simple-support-ticket-system
 License: GPL2
@@ -115,7 +115,7 @@ function my_plugin_menu() {
 	$users_sub_name = sprintf( __( 'Users', 'simple-support-ticket-system' ));
 	$general_title = sprintf( __( 'General Options', 'simple-support-ticket-system' ));
 	$general_sub_name = sprintf( __( 'General', 'simple-support-ticket-system' ));
-	add_menu_page('Ticket System Options', 'Ticket System', 'manage_options', 'Ticket_Allgemein', 'my_plugin_options', 'dashicons-tickets-alt', 27.1);
+	add_menu_page('Ticket System Options', 'Support System', 'manage_options', 'Ticket_Allgemein', 'my_plugin_options', 'dashicons-tickets-alt', 27.1);
 	$GLOBALS['page_general'] = add_submenu_page( 'Ticket_Allgemein', $general_title, $general_sub_name, 'manage_options', 'general-unique-identifier', 'general_plugin_options' );
 	$GLOBALS['page_users'] = add_submenu_page( 'Ticket_Allgemein', $users_title, $users_sub_name, 'manage_options', 'users-unique-identifier', 'users_plugin_options' );
 	remove_submenu_page('Ticket_Allgemein', 'Ticket_Allgemein');

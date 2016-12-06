@@ -71,13 +71,13 @@ else {
 		<?php
 		//Verbindung zur Datenbank		
 		//Abfrage der eigenen Tickets
-		$ticket = $wpdb->get_results($wpdb->prepare("SELECT * FROM wp_sts_tickets WHERE geloest='0' AND bearbeiter=%s AND termin_timestamp<%d
+		$ticket = $wpdb->get_results($wpdb->prepare("SELECT * FROM {$wpdb->prefix}sts_tickets WHERE geloest='0' AND bearbeiter=%s AND termin_timestamp<%d
 					UNION
-				   SELECT * FROM wp_sts_tickets WHERE geloest='0' AND bearbeiter=%s AND termin_timestamp=%d
+				   SELECT * FROM {$wpdb->prefix}sts_tickets WHERE geloest='0' AND bearbeiter=%s AND termin_timestamp=%d
 					UNION
-				   SELECT * FROM wp_sts_tickets WHERE geloest='0' AND bearbeiter=%s AND termin IS NULL
+				   SELECT * FROM {$wpdb->prefix}sts_tickets WHERE geloest='0' AND bearbeiter=%s AND termin IS NULL
 				    UNION
-				   SELECT * FROM wp_sts_tickets WHERE geloest='0' AND bearbeiter=%s AND termin_timestamp>%d ",
+				   SELECT * FROM {$wpdb->prefix}sts_tickets WHERE geloest='0' AND bearbeiter=%s AND termin_timestamp>%d ",
 				   $user, $timestamp, $user, $timestamp, $user, $user, $timestamp));
 		foreach($ticket as $row)
 		{
@@ -101,7 +101,7 @@ else {
 						<?php
 							if(isset($row->datepicker))
 							{
-								echo $wpdb->get_var("SELECT ts_value FROM wp_sts_options WHERE ts_option = 'datepicker'");
+								echo $wpdb->get_var("SELECT ts_value FROM {$wpdb->prefix}sts_options WHERE ts_option = 'datepicker'");
 								echo ": <b>" . esc_html($row->datepicker) . "</b>";
 							}
 						?>
@@ -165,7 +165,7 @@ else {
 				</table>
 				<table class="answers">
 					<?php
-					$answers = $wpdb->get_results($wpdb->prepare("SELECT antwort, user FROM wp_sts_answers WHERE ticket_id = %d ORDER BY index_antwort ASC", $row->id));
+					$answers = $wpdb->get_results($wpdb->prepare("SELECT antwort, user FROM {$wpdb->prefix}sts_answers WHERE ticket_id = %d ORDER BY index_antwort ASC", $row->id));
 					foreach($answers as $query) {
 						?>
 						<tr <?php if($query->user != NULL) { ?> class="admin" <?php } ?>>

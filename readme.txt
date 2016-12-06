@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: ticket, simple, system, support, plugin, request, help, desk
 Requires at least: 3.0.1
 Tested up to: 4.6.1
-Stable tag: 1.3.2
+Stable tag: 1.3.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,7 +16,7 @@ This plugin adds a ticket system to your page, to handle Questions, problems or 
 You can use it as a help desk for co-workers in your Intranet or as a contact form for your website for example.
 
 = Demo =
-[Right here](http://wp12405556.server-he.de/)
+[Right here](http://demo.en0x.de)
 
 = GitHub =
 [This Plugin on Github](https://github.com/en00x/Simple-Ticket-System-WordPress)
@@ -63,6 +63,10 @@ Not yet!
 
 
 == Changelog ==
+= 1.3.4 =
+* Added Multisite support
+= 1.3.3 =
+* User Guide added
 = 1.3.2 =
 * Fixed search function
 = 1.3.1 =

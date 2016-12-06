@@ -24,7 +24,7 @@ function decrypt($string, $key) {
   return $result;
 }
 
-$ticket = $wpdb->get_results($wpdb->prepare("SELECT * FROM wp_sts_tickets WHERE id=%d",$id));
+$ticket = $wpdb->get_results($wpdb->prepare("SELECT * FROM {$wpdb->prefix}sts_tickets WHERE id=%d",$id));
 foreach($ticket as $row)
 {
 ?>
@@ -47,7 +47,7 @@ foreach($ticket as $row)
 				<?php
 					if(isset($row->datepicker))
 					{
-						echo $wpdb->get_var("SELECT ts_value FROM wp_sts_options WHERE ts_option = 'datepicker'");
+						echo $wpdb->get_var("SELECT ts_value FROM {$wpdb->prefix}sts_options WHERE ts_option = 'datepicker'");
 						echo ": <b>" . esc_html($row->datepicker) . "</b>";
 					}
 				?>
@@ -99,7 +99,7 @@ foreach($ticket as $row)
 		</table>
 		<table class="answers" style="display:table">
 			<?php
-			$answers = $wpdb->get_results($wpdb->prepare("SELECT antwort, user FROM wp_sts_answers WHERE ticket_id = %d ORDER BY index_antwort ASC", $id));
+			$answers = $wpdb->get_results($wpdb->prepare("SELECT antwort, user FROM {$wpdb->prefix}sts_answers WHERE ticket_id = %d ORDER BY index_antwort ASC", $id));
 			foreach($answers as $query) {
 				?>
 				<tr <?php if($query->user != NULL) { ?> class="admin" <?php } ?>>

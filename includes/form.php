@@ -5,11 +5,11 @@ global $wpdb;
 if(isset($_GET["tid"])) {
 	include_once(TS_DIR.'includes/show-ticket.php');
 } else {
-	$prob = $wpdb->get_var("SELECT ts_value FROM wp_sts_options WHERE ts_option = 'problem'");
-	$opt1 = $wpdb->get_var("SELECT ts_value FROM wp_sts_options WHERE ts_option = 'opt_field_1'");
-	$opt2 = $wpdb->get_var("SELECT ts_value FROM wp_sts_options WHERE ts_option = 'opt_field_2'");
-	$opt3 = $wpdb->get_var("SELECT ts_value FROM wp_sts_options WHERE ts_option = 'opt_field_3'");
-	$datepicker = $wpdb->get_var("SELECT ts_value FROM wp_sts_options WHERE ts_option = 'datepicker'");
+	$prob = $wpdb->get_var("SELECT ts_value FROM {$wpdb->prefix}sts_options WHERE ts_option = 'problem'");
+	$opt1 = $wpdb->get_var("SELECT ts_value FROM {$wpdb->prefix}sts_options WHERE ts_option = 'opt_field_1'");
+	$opt2 = $wpdb->get_var("SELECT ts_value FROM {$wpdb->prefix}sts_options WHERE ts_option = 'opt_field_2'");
+	$opt3 = $wpdb->get_var("SELECT ts_value FROM {$wpdb->prefix}sts_options WHERE ts_option = 'opt_field_3'");
+	$datepicker = $wpdb->get_var("SELECT ts_value FROM {$wpdb->prefix}sts_options WHERE ts_option = 'datepicker'");
 		
 	if ( is_user_logged_in() ) {
 		$current_user = wp_get_current_user();
@@ -18,8 +18,8 @@ if(isset($_GET["tid"])) {
 		$readonly = 'readonly';
 	} else if (isset($_COOKIE["ts_username"])) {
 		$user = $_COOKIE["ts_username"];
-		$form_name = $wpdb->get_var("SELECT name FROM wp_sts_login WHERE username = '$user'");
-		$form_mail = $wpdb->get_var("SELECT mail FROM wp_sts_login WHERE username = '$user'");
+		$form_name = $wpdb->get_var("SELECT name FROM {$wpdb->prefix}sts_login WHERE username = '$user'");
+		$form_mail = $wpdb->get_var("SELECT mail FROM {$wpdb->prefix}sts_login WHERE username = '$user'");
 		$readonly = 'readonly';
 	} else {
 		$form_mail = '';
@@ -68,7 +68,7 @@ if(isset($_GET["tid"])) {
 							});
 							</script>
 						<?php } 
-						if($wpdb->get_var("SELECT ts_value FROM wp_sts_options WHERE ts_option = 'check_mail'") == 1) {
+						if($wpdb->get_var("SELECT ts_value FROM {$wpdb->prefix}sts_options WHERE ts_option = 'check_mail'") == 1) {
 						?>
 						<div style="margin-bottom: 20px"><input type="checkbox" name="status" value="yes"> <?php _e('Status information by E-Mail', 'simple-support-ticket-system'); ?></input></div>
 						<?php } ?>

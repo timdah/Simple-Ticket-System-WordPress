@@ -12,33 +12,33 @@ if(isset($_POST["what"]))
 {
 	if(sanitize_text_field($_POST["what"] == "new"))
 	{
-		$ticket = $wpdb->get_results($wpdb->prepare("SELECT * FROM wp_sts_tickets WHERE geloest='0' AND bearbeiter='unbekannt' AND termin_timestamp<%d
+		$ticket = $wpdb->get_results($wpdb->prepare("SELECT * FROM {$wpdb->prefix}sts_tickets WHERE geloest='0' AND bearbeiter='unbekannt' AND termin_timestamp<%d
 					UNION
-				   SELECT * FROM wp_sts_tickets WHERE geloest='0' AND bearbeiter='unbekannt' AND termin_timestamp=%d
+				   SELECT * FROM {$wpdb->prefix}sts_tickets WHERE geloest='0' AND bearbeiter='unbekannt' AND termin_timestamp=%d
 					UNION
-				   SELECT * FROM wp_sts_tickets WHERE geloest='0' AND bearbeiter='unbekannt' AND termin IS NULL
+				   SELECT * FROM {$wpdb->prefix}sts_tickets WHERE geloest='0' AND bearbeiter='unbekannt' AND termin IS NULL
 				    UNION
-				   SELECT * FROM wp_sts_tickets WHERE geloest='0' AND bearbeiter='unbekannt' AND termin_timestamp>%d ",
+				   SELECT * FROM {$wpdb->prefix}sts_tickets WHERE geloest='0' AND bearbeiter='unbekannt' AND termin_timestamp>%d ",
 				   $timestamp, $timestamp, $timestamp));
 	} else if(sanitize_text_field($_POST["what"] == "open"))
 	{
-		$ticket = $wpdb->get_results($wpdb->prepare("SELECT * FROM wp_sts_tickets WHERE geloest='0' AND bearbeiter!='unbekannt' AND termin_timestamp<%d
+		$ticket = $wpdb->get_results($wpdb->prepare("SELECT * FROM {$wpdb->prefix}sts_tickets WHERE geloest='0' AND bearbeiter!='unbekannt' AND termin_timestamp<%d
 					UNION
-				   SELECT * FROM wp_sts_tickets WHERE geloest='0' AND bearbeiter!='unbekannt' AND termin_timestamp=%d
+				   SELECT * FROM {$wpdb->prefix}sts_tickets WHERE geloest='0' AND bearbeiter!='unbekannt' AND termin_timestamp=%d
 					UNION
-				   SELECT * FROM wp_sts_tickets WHERE geloest='0' AND bearbeiter!='unbekannt' AND termin IS NULL
+				   SELECT * FROM {$wpdb->prefix}sts_tickets WHERE geloest='0' AND bearbeiter!='unbekannt' AND termin IS NULL
 				    UNION
-				   SELECT * FROM wp_sts_tickets WHERE geloest='0' AND bearbeiter!='unbekannt' AND termin_timestamp>%d ",
+				   SELECT * FROM {$wpdb->prefix}sts_tickets WHERE geloest='0' AND bearbeiter!='unbekannt' AND termin_timestamp>%d ",
 				   $timestamp, $timestamp, $timestamp));
 	} else if(sanitize_text_field($_POST["what"] == "my"))
 	{
-		$ticket = $wpdb->get_results($wpdb->prepare("SELECT * FROM wp_sts_tickets WHERE geloest='0' AND bearbeiter=%s AND termin_timestamp<%d
+		$ticket = $wpdb->get_results($wpdb->prepare("SELECT * FROM {$wpdb->prefix}sts_tickets WHERE geloest='0' AND bearbeiter=%s AND termin_timestamp<%d
 					UNION
-				   SELECT * FROM wp_sts_tickets WHERE geloest='0' AND bearbeiter=%s AND termin_timestamp=%d
+				   SELECT * FROM {$wpdb->prefix}sts_tickets WHERE geloest='0' AND bearbeiter=%s AND termin_timestamp=%d
 					UNION
-				   SELECT * FROM wp_sts_tickets WHERE geloest='0' AND bearbeiter=%s AND termin IS NULL
+				   SELECT * FROM {$wpdb->prefix}sts_tickets WHERE geloest='0' AND bearbeiter=%s AND termin IS NULL
 				    UNION
-				   SELECT * FROM wp_sts_tickets WHERE geloest='0' AND bearbeiter=%s AND termin_timestamp>%d ",
+				   SELECT * FROM {$wpdb->prefix}sts_tickets WHERE geloest='0' AND bearbeiter=%s AND termin_timestamp>%d ",
 				   $user, $timestamp, $user, $timestamp, $user, $user, $timestamp));
 	}
 }	
@@ -53,20 +53,20 @@ if(isset($_POST["select"]))
 	$offset = 0;
 	if(isset($_POST["offset"])){$offset = sanitize_text_field($_POST["offset"]);}
 	$ticket = $wpdb->get_results($wpdb->prepare(
-				"SELECT * FROM wp_sts_tickets WHERE `{$select}` LIKE %s ORDER BY id $order LIMIT 10 OFFSET %d",
+				"SELECT * FROM {$wpdb->prefix}sts_tickets WHERE `{$select}` LIKE %s ORDER BY id $order LIMIT 10 OFFSET %d",
 				$search, $offset)
 			  );
 	if($select == 'termin')
 	{
 		$ticket = $wpdb->get_results($wpdb->prepare(
-					"SELECT * FROM wp_sts_tickets WHERE `termin` IS NOT NULL AND `termin` != '' AND geloest='0' ORDER BY termin_timestamp ASC LIMIT 10 OFFSET %d",
+					"SELECT * FROM {$wpdb->prefix}sts_tickets WHERE `termin` IS NOT NULL AND `termin` != '' AND geloest='0' ORDER BY termin_timestamp ASC LIMIT 10 OFFSET %d",
 					$offset)
 				  );
 	}
 	if($select == 'geloest')
 	{
 		$ticket = $wpdb->get_results($wpdb->prepare(
-					"SELECT * FROM wp_sts_tickets WHERE geloest='1' ORDER BY ende_timestamp $order LIMIT 10 OFFSET %d",
+					"SELECT * FROM {$wpdb->prefix}sts_tickets WHERE geloest='1' ORDER BY ende_timestamp $order LIMIT 10 OFFSET %d",
 					$offset)
 				  );
 	}
@@ -76,7 +76,7 @@ if(isset($_POST["select"]))
 if(isset($_POST["id"]))
 {
 	$id = sanitize_text_field($_POST["id"]);
-	$ticket = $wpdb->get_results($wpdb->prepare("SELECT * FROM wp_sts_tickets WHERE id=%d", $id));
+	$ticket = $wpdb->get_results($wpdb->prepare("SELECT * FROM {$wpdb->prefix}sts_tickets WHERE id=%d", $id));
 }
 
 // Schleife für Aktuallisierung des gewünschten Bereichs
@@ -102,7 +102,7 @@ foreach($ticket as $row)
 				<?php
 					if(isset($row->datepicker))
 					{
-						echo $wpdb->get_var("SELECT ts_value FROM wp_sts_options WHERE ts_option = 'datepicker'");
+						echo $wpdb->get_var("SELECT ts_value FROM {$wpdb->prefix}sts_options WHERE ts_option = 'datepicker'");
 						echo ": <b>" . esc_html($row->datepicker) . "</b>";
 					}
 				?>
@@ -167,7 +167,7 @@ foreach($ticket as $row)
 		<?php if($row->bearbeiter == $user || $_COOKIE["ts_admin"] == 1) { ?>
 		<table class="answers">
 			<?php
-			$answers = $wpdb->get_results($wpdb->prepare("SELECT antwort, user FROM wp_sts_answers WHERE ticket_id = %d ORDER BY index_antwort ASC", $row->id));
+			$answers = $wpdb->get_results($wpdb->prepare("SELECT antwort, user FROM {$wpdb->prefix}sts_answers WHERE ticket_id = %d ORDER BY index_antwort ASC", $row->id));
 			foreach($answers as $query) {
 				?>
 				<tr <?php if($query->user != NULL) { ?> class="admin" <?php } ?>>
@@ -332,20 +332,20 @@ if(isset($_POST["select"]))
 	$search = sanitize_text_field($_POST["search"]);
 	$order = sanitize_text_field($_POST["order"]);
 	$ticket = $wpdb->get_results($wpdb->prepare(
-				"SELECT COUNT(*) AS count FROM wp_sts_tickets WHERE %s LIKE %s ORDER BY id $order",
+				"SELECT COUNT(*) AS count FROM {$wpdb->prefix}sts_tickets WHERE %s LIKE %s ORDER BY id $order",
 				$select, $search)
 			  );
 	if($select == 'termin')
 	{
 		$ticket = $wpdb->get_results($wpdb->prepare(
-					"SELECT COUNT(*) AS count FROM wp_sts_tickets WHERE %s LIKE %s AND geloest='0' ORDER BY termin_timestamp ASC",
+					"SELECT COUNT(*) AS count FROM {$wpdb->prefix}sts_tickets WHERE %s LIKE %s AND geloest='0' ORDER BY termin_timestamp ASC",
 					$select, $search)
 				  );
 	}
 	if($select == 'geloest')
 	{
 		$ticket = $wpdb->get_results(
-					"SELECT COUNT(*) AS count FROM wp_sts_tickets WHERE geloest='1' ORDER BY id $order"
+					"SELECT COUNT(*) AS count FROM {$wpdb->prefix}sts_tickets WHERE geloest='1' ORDER BY id $order"
 				  );
 	}
 	
