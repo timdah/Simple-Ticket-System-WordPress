@@ -18,6 +18,7 @@ function addChanges() {
 	var take = 'NULL';
 	var done = 'NULL';
 	var answer = 'NULL';
+	var link_mail = jQuery('input[name=link_mail]:checked').val();
 	if(jQuery('#mail_enable').has('div').length != 0) {
 		take = jQuery('#take').val();
 		done = jQuery('#done').val();
@@ -34,7 +35,8 @@ function addChanges() {
 		'datepicker': datepicker,
 		'take': take,
 		'done': done,
-		'answer': answer
+		'answer': answer,
+		'link_mail': link_mail
 		};
 		
 		jQuery.post(ajax_object.ajax_url, data, function() {

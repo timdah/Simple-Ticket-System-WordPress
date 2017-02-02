@@ -14,6 +14,7 @@ $datepicker = sanitize_text_field($_POST["datepicker"]);
 $take = implode( "\n", array_map( 'sanitize_text_field', explode( "\n", $_POST['take'] ) ) );
 $done = implode( "\n", array_map( 'sanitize_text_field', explode( "\n", $_POST['done'] ) ) );
 $answer = implode( "\n", array_map( 'sanitize_text_field', explode( "\n", $_POST['answer'] ) ) );
+if(isset($_POST["link_mail"])){$link_mail = sanitize_text_field($_POST["link_mail"]);} else {$link_mail = '0';}
 
 
 
@@ -26,8 +27,9 @@ $wpdb->query($wpdb->prepare("UPDATE {$wpdb->prefix}sts_options SET ts_value = CA
     WHEN ts_option = 'mail_take' THEN %s
     WHEN ts_option = 'mail_done' THEN %s
     WHEN ts_option = 'mail_answer' THEN %s
+	WHEN ts_option = 'link_mail' THEN %s
 	ELSE ts_value
-END", $prob, $opt1, $opt2, $opt3, $datepicker, $take, $done, $answer));
+END", $prob, $opt1, $opt2, $opt3, $datepicker, $take, $done, $answer, $link_mail));
 
 // Check if JavaScript is manipulated
 function checkText($str) {

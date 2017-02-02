@@ -12,6 +12,7 @@ $datepicker = $wpdb->get_var("SELECT ts_value FROM {$wpdb->prefix}sts_options WH
 $take = $wpdb->get_var("SELECT ts_value FROM {$wpdb->prefix}sts_options WHERE ts_option = 'mail_take'");
 $done = $wpdb->get_var("SELECT ts_value FROM {$wpdb->prefix}sts_options WHERE ts_option = 'mail_done'");
 $answer = $wpdb->get_var("SELECT ts_value FROM {$wpdb->prefix}sts_options WHERE ts_option = 'mail_answer'");
+$link_mail = $wpdb->get_var("SELECT ts_value FROM {$wpdb->prefix}sts_options WHERE ts_option = 'link_mail'");
 ?>
 <h1 id="ts_head"><?php _e('General Options', 'simple-support-ticket-system'); ?></h1>
 <div id="ts_load"><div class="three-quarters-loader"></div></div>
@@ -98,6 +99,10 @@ $answer = $wpdb->get_var("SELECT ts_value FROM {$wpdb->prefix}sts_options WHERE 
 				if($check != 0) {
 				?>
 				<div id="enable_check">
+					<div>
+						<?php _e('Ticket-Link in E-Mails', 'simple-support-ticket-system'); ?>
+						<input <?php if($link_mail == 1){echo "checked";} ?> type="checkbox" name="link_mail" value="1" />
+					</div>
 					<div class="field">
 						<?php _e('Content of mail when ticket was taken:', 'simple-support-ticket-system'); ?>
 						<textarea maxLength="500" id="take" type="text" required="required"><?php echo $take; ?></textarea>

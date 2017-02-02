@@ -10,7 +10,8 @@ $user = $_COOKIE["ts_username"];
 $id = sanitize_text_field($_POST["id"]);
 $option = sanitize_text_field($_POST["option"]);
 $status = NULL; $mail = NULL; $title = NULL;
-$query_stat = $wpdb->get_results($wpdb->prepare("SELECT status, mail, title FROM {$wpdb->prefix}sts_tickets WHERE id=%d",$id));
+$link_mail = NULL;
+$query_stat = $wpdb->get_results($wpdb->prepare("SELECT status, mail, title, link FROM {$wpdb->prefix}sts_tickets WHERE id=%d",$id));
 foreach($query_stat as $row)
 {
 	if($row->status === '1')
@@ -18,6 +19,13 @@ foreach($query_stat as $row)
 		$status = '1';
 		$mail = $row->mail;
 		$title = $row->title;
+		
+		$link_mail = $wpdb->get_var("SELECT ts_value FROM {$wpdb->prefix}sts_options WHERE ts_option = 'link_mail'");
+		if($link_mail == '1') {
+			$link_mail = $row->link;
+		} else {
+			$link_mail = NULL;
+		}
 	}
 }
 // Überprüfen ob übergeben wurde, was zu tun ist
@@ -40,7 +48,7 @@ if(isset($_POST["what"]))
 				{
 					$url = TS_DIR_URL.'includes/status.php';
 					$text = $wpdb->get_var("SELECT ts_value FROM {$wpdb->prefix}sts_options WHERE ts_option = 'mail_done'");
-					$data = array('mail' => $mail, 'what' => 'done', 'title' => $title, 'text' => $text);
+					$data = array('mail' => $mail, 'what' => 'done', 'title' => $title, 'text' => $text, 'link' => $link_mail);
 					//open connection
 					$ch = curl_init();
 					//set the url, number of POST vars, POST data
@@ -73,7 +81,7 @@ if(isset($_POST["what"]))
 				{
 					$url = TS_DIR_URL.'includes/status.php';
 					$text = $wpdb->get_var("SELECT ts_value FROM {$wpdb->prefix}sts_options WHERE ts_option = 'mail_take'");
-					$data = array('mail' => $mail, 'what' => 'take', 'title' => $title, 'text' => $text);
+					$data = array('mail' => $mail, 'what' => 'take', 'title' => $title, 'text' => $text, 'link' => $link_mail);
 					//open connection
 					$ch = curl_init();
 					//set the url, number of POST vars, POST data

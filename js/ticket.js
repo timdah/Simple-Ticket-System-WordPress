@@ -24,6 +24,9 @@ jQuery(document).ready(function() {
 });
 var bCheck = 0;
 
+// Globale Variablen
+var url = window.location.href;
+
 // Lade den div-Bereich 'ajax' neu, 'action' wird beim Aufruf mit übergeben --> Buttons
 function allTickets(action) {
 	var data = {
@@ -117,7 +120,7 @@ function update(id) {
 		'action': 'UPDATE',
 		'id': id,
 		'select': select,
-		'text': text
+		'text': text,
 		};
 		
 		jQuery.post(ajax_object.ajax_url, data, function() {
@@ -161,7 +164,8 @@ function take(id) {
 	var data = {
 	'action': 'UPDATE',
 	'id': id,
-	'what': 'take'
+	'what': 'take',
+	'url': url
 	};
 	
 	jQuery.post(ajax_object.ajax_url, data, function(response)
@@ -197,7 +201,8 @@ function done(id) {
 	var data = {
 	'action': 'UPDATE',
 	'id': id,
-	'what': 'done'
+	'what': 'done',
+	'url': url
 	};
 	
 	jQuery.post(ajax_object.ajax_url, data, function(response)
@@ -411,7 +416,8 @@ function answer(id, text) {
 	var data = {
 	'action': 'ANSWER',
 	'id': id,
-	'text': text
+	'text': text,
+	'url': url
 	};
 		
 	jQuery.post(ajax_object.ajax_url, data, function() {

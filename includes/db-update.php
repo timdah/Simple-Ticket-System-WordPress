@@ -57,5 +57,14 @@ if($db_version == DB_VERSION) {
 		
 		$wpdb->query("UPDATE {$wpdb->prefix}sts_options SET ts_value = '104' WHERE ts_option = 'db_version'");
 	}
+	if($db_version < 105) {
+		$wpdb->query("INSERT INTO {$wpdb->prefix}sts_options (ts_option, ts_value) VALUES ('link_mail', '0')");
+		
+		$wpdb->query("ALTER TABLE {$wpdb->prefix}sts_tickets
+		ADD link VARCHAR(500) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
+		;");
+		
+		$wpdb->query("UPDATE {$wpdb->prefix}sts_options SET ts_value = '105' WHERE ts_option = 'db_version'");
+	}
 }
 ?>

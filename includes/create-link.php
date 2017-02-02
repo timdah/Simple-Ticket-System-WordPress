@@ -17,7 +17,9 @@ if ($query) {
 }
 
 $linkURL = "<a href='" . $url . "'>" . $url . "</a>";
+$wpdb->query($wpdb->prepare("UPDATE {$wpdb->prefix}sts_tickets SET link=%s WHERE id=%d", $linkURL, $id));
 echo '<p>' . _e('Pleae store this link, you can consult your ticket there: ', 'simple-support-ticket-system') . $linkURL .  '</p>';
+
 
 // functions
 function encrypt($string, $key) {
