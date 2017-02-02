@@ -66,5 +66,10 @@ if($db_version == DB_VERSION) {
 		
 		$wpdb->query("UPDATE {$wpdb->prefix}sts_options SET ts_value = '105' WHERE ts_option = 'db_version'");
 	}
+	if($db_version < 106) {
+		$wpdb->query("ALTER TABLE {$wpdb->prefix}sts_options MODIFY ts_value VARCHAR(1000)");
+		
+		$wpdb->query("UPDATE {$wpdb->prefix}sts_options SET ts_value = '106' WHERE ts_option = 'db_version'");
+	}
 }
 ?>

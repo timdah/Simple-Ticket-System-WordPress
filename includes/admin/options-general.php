@@ -105,15 +105,15 @@ $link_mail = $wpdb->get_var("SELECT ts_value FROM {$wpdb->prefix}sts_options WHE
 					</div>
 					<div class="field">
 						<?php _e('Content of mail when ticket was taken:', 'simple-support-ticket-system'); ?>
-						<textarea maxLength="500" id="take" type="text" required="required"><?php echo $take; ?></textarea>
+						<textarea maxLength="1000" id="take" type="text" required="required"><?php echo $take; ?></textarea>
 					</div>
 					<div class="field">
 						<?php _e('Content of mail when ticket is done:', 'simple-support-ticket-system'); ?>
-						<textarea maxLength="500" id="done" type="text" required="required"><?php echo $done; ?></textarea>
+						<textarea maxLength="1000" id="done" type="text" required="required"><?php echo $done; ?></textarea>
 					</div>
 					<div class="field">
 						<?php _e('Content of mail after a new answer:', 'simple-support-ticket-system'); ?>
-						<textarea maxLength="500" id="answer" type="text" required="required"><?php echo $answer; ?></textarea>
+						<textarea maxLength="1000" id="answer" type="text" required="required"><?php echo $answer; ?></textarea>
 					</div>
 				</div>
 				<?php } ?>

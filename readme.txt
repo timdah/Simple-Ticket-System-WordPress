@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: ticket, simple, system, support, plugin, request, help, desk
 Requires at least: 3.0.1
 Tested up to: 4.7.1
-Stable tag: 1.3.5
+Stable tag: 1.3.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -63,6 +63,8 @@ Not yet!
 
 
 == Changelog ==
+= 1.3.6 =
+* Fixed max length for email text.
 = 1.3.5 =
 * Function added to send a ticket-link within the notification e-mails.
 = 1.3.4 =

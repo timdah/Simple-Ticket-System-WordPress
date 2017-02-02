@@ -4,7 +4,7 @@ Plugin Name: Support Ticket System
 Plugin URI: wordpress.org/plugins/simple-support-ticket-system/
 Author: Tim Dahlmanns
 Description: Simple and fast ticket system to receive and store Problems of Customers or Visitors, with a great search function.
-Version: 1.3.5
+Version: 1.3.6
 Domain Path: /languages
 Text Domain: simple-support-ticket-system
 License: GPL2
@@ -29,7 +29,7 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 // define constants
 define( 'TS_DIR', plugin_dir_path( __FILE__ ) );
 define( 'TS_DIR_URL', plugin_dir_url(__FILE__) );
-define( 'DB_VERSION', 105 );
+define( 'DB_VERSION', 106 );
 
 // Use Wordpress Database
 global $wpdb;
